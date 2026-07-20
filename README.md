@@ -3,8 +3,8 @@
 > Open-source compliance checks for fintech code — pre-commit, PR review, and a
 > hash-chained audit trail you can hand to your SOC2 / PCI-DSS auditor.
 
-[![npm version](https://img.shields.io/npm/v/@curtis/compliance.svg)](https://www.npmjs.com/package/@curtis/compliance)
-[![license](https://img.shields.io/npm/l/@curtis/compliance.svg)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/@jordannewell/curtis-compliance.svg)](https://www.npmjs.com/package/@jordannewell/curtis-compliance)
+[![license](https://img.shields.io/npm/l/@jordannewell/curtis-compliance.svg)](LICENSE)
 
 Curtis Compliance scans your diff for things regulators care about — plaintext
 secrets, non-TLS calls, missing audit logs, unencrypted sensitive data,
@@ -50,7 +50,7 @@ Every check produces a tamper-evident event — see
 
 ```bash
 # Install
-npm install -g @curtis/compliance
+npm install -g @jordannewell/curtis-compliance
 
 # Initialize in your repo
 curtis-compliance init --framework pci-dss
@@ -246,7 +246,7 @@ The `no-secrets-in-code` rule recognizes 21 patterns across 12 providers:
 ## Installation
 
 ```bash
-npm install -g @curtis/compliance
+npm install -g @jordannewell/curtis-compliance
 ```
 
 Requires Node 18+.
@@ -254,7 +254,7 @@ Requires Node 18+.
 If you prefer not to install globally, `npx` works:
 
 ```bash
-npx @curtis/compliance init --framework pci-dss
+npx @jordannewell/curtis-compliance init --framework pci-dss
 ```
 
 ## Roadmap
@@ -292,7 +292,7 @@ this README:
   no image published.
 - **No `curtis.ai` website.** That domain belongs to an unrelated party.
   This project lives at
-  [github.com/curtis-ai/compliance](https://github.com/curtis-ai/compliance).
+  [github.com/JordanNewell/curtis-compliance](https://github.com/JordanNewell/curtis-compliance).
 - **No pricing tiers.** Everything that exists is MIT-licensed and free.
 - **No "5 repo" limit, no Team plan, no Enterprise SSO.** None of those
   features exist in the code.
@@ -302,7 +302,7 @@ If any of the above changes, this section will be updated to reflect it.
 ## Development
 
 ```bash
-git clone https://github.com/curtis-ai/compliance.git
+git clone https://github.com/JordanNewell/curtis-compliance.git
 cd compliance
 npm install
 npm test         # 43 unit tests, ~7s
@@ -322,7 +322,7 @@ MIT — see [LICENSE](LICENSE).
 ## Contributing
 
 Pull requests welcome at
-[github.com/curtis-ai/compliance](https://github.com/curtis-ai/compliance).
+[github.com/JordanNewell/curtis-compliance](https://github.com/JordanNewell/curtis-compliance).
 
 Areas especially worth contributing:
 - Additional secret-detection patterns (especially non-AWS cloud providers)

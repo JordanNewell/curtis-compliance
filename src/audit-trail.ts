@@ -24,6 +24,9 @@ import { createReadStream } from 'fs';
 import type { ComplianceFramework, ComplianceReport } from './compliance.js';
 
 export const AUDIT_DIR = '.curtis/audit';
+// Kept in sync with package.json via a regression test in
+// tests/audit-trail.test.ts. We don't import the JSON because ts-jest runs
+// under CommonJS where import assertions aren't allowed.
 export const CURTIS_VERSION = '1.1.0';
 
 export interface AuditEventCheck {
