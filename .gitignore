@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Curtis runtime artifacts
+.curtis/audit/
+compliance-report.json
+*.log
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
