@@ -1,0 +1,22 @@
+# Source — only ship dist/
+src/
+tests/
+jest.config.cjs
+tsconfig.json
+
+# Dev artifacts
+coverage/
+.eslintcache
+
+# Examples / runtime
+.curtis/
+*.log
+compliance-report.json
+
+# Editor / OS
+.vscode/
+.idea/
+.git/
+.gitignore
+.editorconfig
+.DS_Store

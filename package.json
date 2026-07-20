@@ -1,7 +1,8 @@
 {
   "name": "@curtis/compliance",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Automated compliance workflows for fintech development teams",
+  "type": "module",
   "main": "dist/compliance.js",
   "bin": {
     "curtis-compliance": "dist/cli.js"
@@ -52,6 +53,7 @@
   "files": [
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ]
 }
