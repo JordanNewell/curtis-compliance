@@ -80,7 +80,7 @@ describe('NoSecretsRule pattern coverage', () => {
     ['github-oauth', 'gho_' + 'e'.repeat(36)],
     ['gitlab', 'glpat-' + 'f'.repeat(20)],
     ['stripe-live', 'sk_live_' + 'g'.repeat(24)],
-    ['slack', 'xoxb-1234567890-1234567890-' + 'h'.repeat(24)],
+    ['slack', 'xoxb-' + '1'.repeat(12) + '-' + '2'.repeat(12) + '-' + 'h'.repeat(24)],
     ['pem-block', '-----BEGIN RSA PRIVATE KEY-----\nMIIabc...'],
     ['password-assign', 'const password = "hunter2";']
   ];
