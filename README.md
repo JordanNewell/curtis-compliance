@@ -27,8 +27,12 @@ graph LR
     F --> G{Passes Gate?}
     G -->|No| H[Comment Fixes]
     G -->|Yes| I[Merge]
-    I --> J[Audit Trail Updated]
+    I --> J[Hash-chained Audit Event Appended]
+    J --> K[.curtis/audit/YYYY/MM/DD.jsonl]
 ```
+
+Every compliance check produces a tamper-evident audit event — see
+[Audit Trail](#3-audit-trail--tamper-evidence) below.
 
 ## Quick Start
 
@@ -94,29 +98,71 @@ block_on_failure: true
 [View full report →](https://curtis.ai/pr/123/compliance)
 ```
 
-### 3. Automatic Audit Trails
+### 3. Audit Trail + Tamper Evidence
 
-Every change is logged automatically:
+Every `curtis-compliance check` and `report` writes one event to an append-only,
+hash-chained JSONL log. One file per day at `.curtis/audit/YYYY/MM/YYYY-MM-DD.jsonl`.
 
 ```json
 {
-  "timestamp": "2025-02-22T22:30:00Z",
-  "event": "code_change",
-  "compliance": {
-    "framework": "pci-dss",
-    "requirements": ["10.2", "10.3", "10.4"],
-    "status": "compliant"
-  },
-  "changes": [
-    {
-      "file": "src/payments/process.py",
-      "author": "jrnew",
-      "commit": "abc123",
-      "compliance_impact": "low"
-    }
-  ]
+  "timestamp": "2026-07-20T17:50:41.259Z",
+  "event_id": "db8579a6-971f-4a98-bf1c-32ff7db7a58f",
+  "event_type": "compliance_check",
+  "framework": "pci-dss",
+  "repo": "acme/payments",
+  "commit": "abc123",
+  "author": "jrnew",
+  "branch": "main",
+  "overall_status": "non-compliant",
+  "checks": [
+    { "requirement": "no-secrets-in-code", "status": "fail", "severity": "critical", "file": "leaky.js", "line": 1 },
+    { "requirement": "tls-only", "status": "pass", "severity": "high" }
+  ],
+  "summary": { "critical": 1, "high": 0, "medium": 0, "low": 0, "total": 5 },
+  "curtis_version": "1.1.0",
+  "prev_hash": "a7192de26a7e8c1d4f5b..."
 }
 ```
+
+Each event's `prev_hash` is the SHA-256 of the prior event's canonical JSON. Any
+modification to a historical event breaks the chain and is detected by:
+
+```bash
+$ curtis-compliance audit verify
+✅ Audit chain intact (142 events verified).
+```
+
+#### Export for auditors
+
+SOC2 / PCI-DSS auditors want CSV. Curtis ships it:
+
+```bash
+# Export everything as CSV
+curtis-compliance audit export --format csv > evidence.csv
+
+# Filter by date range + framework
+curtis-compliance audit export \
+  --since 2026-01-01 \
+  --until 2026-06-30 \
+  --framework pci-dss \
+  --format csv \
+  -o pci-evidence-h1.csv
+
+# JSON for programmatic consumers
+curtis-compliance audit export --format json
+```
+
+#### Tail recent events
+
+```bash
+$ curtis-compliance audit tail -n 5
+2026-07-20T17:50:41Z  pci-dss   non-compliant  acme/payments
+2026-07-20T16:12:03Z  pci-dss   compliant      acme/payments
+2026-07-20T14:33:09Z  hipaa     partial        acme/health-api
+...
+```
+
+**Disable the audit trail** by setting `auditTrail: false` in `.curtis/compliance.yaml`.
 
 ### 4. Policy Templates
 

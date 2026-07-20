@@ -151,15 +151,18 @@ program
       }
     }
 
-    // Run compliance checks
-    const report = await complianceEngine.checkCompliance({
-      files: changedFiles,
-      commit: 'HEAD',
-      author: 'local',
-      branch: 'current',
-      framework,
-      config
-    });
+    // Run compliance checks (writes audit trail when config.auditTrail === true)
+    const report = await complianceEngine.checkAndAudit(
+      {
+        files: changedFiles,
+        commit: 'HEAD',
+        author: 'local',
+        branch: 'current',
+        framework,
+        config
+      },
+      { repo: 'local' }
+    );
 
     // Print results
     printReport(report);
@@ -249,20 +252,93 @@ program
       }
     }
 
-    const report = await complianceEngine.checkCompliance({
-      files: changedFiles,
-      commit: 'HEAD',
-      author: 'report',
-      branch: 'current',
-      framework,
-      config
-    });
+    const report = await complianceEngine.checkAndAudit(
+      {
+        files: changedFiles,
+        commit: 'HEAD',
+        author: 'report',
+        branch: 'current',
+        framework,
+        config
+      },
+      { repo: 'local' }
+    );
 
     const fs = await import('fs/promises');
     await fs.writeFile(options.output, JSON.stringify(report, null, 2));
 
     console.log(`📊 Compliance report saved to ${options.output}\n`);
     printReport(report);
+  });
+
+/**
+ * Audit trail operations
+ */
+const audit = program.command('audit').description('Audit trail operations');
+
+audit
+  .command('export')
+  .description('Export audit events as JSON or CSV (auditor-ready)')
+  .option('-o, --output <file>', 'Write to file instead of stdout')
+  .option('-f, --format <format>', 'json | csv', 'json')
+  .option('--since <date>', 'ISO date or timestamp')
+  .option('--until <date>', 'ISO date or timestamp')
+  .option('--framework <framework>', 'Filter by framework')
+  .option('--repo <repo>', 'Filter by repo (owner/name)')
+  .option('--status <status>', 'compliant | non-compliant | partial')
+  .action(async (options) => {
+    const { exportEvents } = await import('./audit-trail.js');
+    const out = await exportEvents({
+      since: options.since,
+      until: options.until,
+      framework: options.framework,
+      repo: options.repo,
+      status: options.status
+    }, options.format);
+
+    if (options.output) {
+      const fs = await import('fs/promises');
+      await fs.writeFile(options.output, out);
+      console.log(`📄 Exported to ${options.output}`);
+    } else {
+      console.log(out);
+    }
+  });
+
+audit
+  .command('verify')
+  .description('Verify audit hash chain integrity')
+  .action(async () => {
+    const { verify } = await import('./audit-trail.js');
+    const result = await verify();
+    if (result.ok) {
+      console.log(`✅ Audit chain intact (${result.events_verified} events verified).`);
+    } else {
+      console.error(`❌ Audit chain broken at line ${result.broken_at!.line}:`);
+      console.error(`   ${result.broken_at!.reason}`);
+      console.error(`   event_id: ${result.broken_at!.event_id}`);
+      console.error(`   ${result.events_verified} events verified before break.`);
+      process.exit(1);
+    }
+  });
+
+audit
+  .command('tail')
+  .description('Print last N audit events')
+  .option('-n, --count <n>', 'Number of events', '10')
+  .action(async (options) => {
+    const { query } = await import('./audit-trail.js');
+    const buffer: string[] = [];
+    const n = parseInt(options.count, 10);
+    for await (const event of query()) {
+      buffer.push(`${event.timestamp}  ${event.framework.padEnd(8)}  ${event.overall_status.padEnd(14)}  ${event.repo}`);
+      if (buffer.length > n) buffer.shift();
+    }
+    if (buffer.length === 0) {
+      console.log('(no audit events yet)');
+    } else {
+      console.log(buffer.join('\n'));
+    }
   });
 
 /**
