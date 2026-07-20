@@ -59,7 +59,7 @@ This project follows [Semantic Versioning](https://semver.org/).
 
 ### Tests
 
-- 43 unit tests across `compliance`, `config`, and `audit-trail` modules.
+- 44 unit tests across `compliance`, `config`, and `audit-trail` modules.
 - Coverage thresholds enforced on engine modules: 80% statements, 70% branches,
   85% functions, 80% lines. (Current: 95 / 82 / 98 / 97.) `cli.ts` and
   `github-integration.ts` are covered by manual smoke tests, excluded from

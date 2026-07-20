@@ -4,6 +4,9 @@ tests/
 jest.config.cjs
 tsconfig.json
 
+# Source maps (reference src/ paths we don't ship)
+**/*.map
+
 # Dev artifacts
 coverage/
 .eslintcache
