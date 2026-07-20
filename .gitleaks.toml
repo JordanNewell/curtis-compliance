@@ -1,0 +1,9 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Synthetic secret-shaped fixtures used by the no-secrets-in-code test suite. Digits are placeholders, never live credentials."
+paths = [
+  '''tests/compliance\.test\.ts$''',
+  '''tests/fixtures/.*$''',
+]
