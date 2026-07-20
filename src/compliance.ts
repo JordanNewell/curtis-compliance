@@ -91,6 +91,10 @@ export interface ComplianceConfig {
   blockOnFailure: boolean;
   skipPatterns: string[];
   customRules?: ComplianceRule[];
+  rules?: Record<string, {
+    enabled: boolean;
+    blockOnFail?: boolean;
+  }>;
   auditTrail: boolean;
 }
 
@@ -109,15 +113,30 @@ export const NoSecretsRule: ComplianceRule = {
   requirements: ['hipaa-164.312-a-1', 'soc2-cc6.1', 'pci-dss-3.4'],
   check: async (ctx: ComplianceContext) => {
     const secretPatterns = [
+      // Assignment patterns (catches password = "x", apiKey = "x", etc.)
       /password\s*=\s*['"`][^'"`]+['"`]/gi,
       /api[_-]?key\s*=\s*['"`][^'"`]+['"`]/gi,
       /secret[_-]?key\s*=\s*['"`][^'"`]+['"`]/gi,
       /token\s*=\s*['"`][^'"`]+['"`]/gi,
       /private[_-]?key\s*=\s*['"`][^'"`]+['"`]/gi,
-      /AKIA[0-9A-Z]{16}/g, // AWS access key
-      /sk-[a-zA-Z0-9]{48}/g, // OpenAI API key
-      /ghp_[a-zA-Z0-9]{36}/g, // GitHub personal access
-      /xoxb-[0-9]{10}-[0-9]{10}-[a-zA-Z0-9]{24}/g, // Slack bot token
+      // Cloud provider tokens
+      /AKIA[0-9A-Z]{16}/g,                        // AWS access key id
+      /AIza[0-9A-Za-z\-_]{35}/g,                  // Google API key
+      // LLM provider tokens
+      /sk-[a-zA-Z0-9]{20}T3BlbkFJ[a-zA-Z0-9]{16}/g, // OpenAI legacy (with BlbkFJ marker)
+      /sk-proj-[a-zA-Z0-9_-]{40,}/g,              // OpenAI project key
+      /sk-or-v1-[a-zA-Z0-9-]{40,}/g,              // OpenRouter
+      /sk-ant-[a-zA-Z0-9_-]{70,}/g,               // Anthropic
+      // VCS tokens
+      /gh[pousr]_[A-Za-z0-9]{36,}/g,              // GitHub PAT/App/refresh/etc.
+      /glpat-[A-Za-z0-9_-]{20}/g,                 // GitLab PAT
+      // Payments
+      /sk_live_[A-Za-z0-9]{24,}/g,                // Stripe live secret
+      /rk_live_[A-Za-z0-9]{24,}/g,                // Stripe restricted live
+      // Chat/automation
+      /xox[baprs]-[0-9a-zA-Z-]{10,}/g,            // Slack token family
+      // PEM private key blocks (any algorithm)
+      /-----BEGIN (?:RSA |EC |DSA |OPENSSH |PGP )?PRIVATE KEY-----/g,
     ];
 
     const violations: Array<{file: string, line: number, match: string}> = [];
@@ -156,7 +175,7 @@ export const NoSecretsRule: ComplianceRule = {
       requirement: 'no-secrets-in-code',
       status: 'pass',
       message: 'No secrets detected in code changes',
-      severity: 'high',
+      severity: 'critical',
       framework: ctx.framework
     };
   }
@@ -438,6 +457,18 @@ export class ComplianceEngine {
     const checks: ComplianceCheckResult[] = [];
 
     for (const rule of applicableRules) {
+      const ruleConfig = context.config.rules?.[rule.id];
+      if (ruleConfig && ruleConfig.enabled === false) {
+        checks.push({
+          requirement: rule.id,
+          status: 'skip',
+          message: `Rule disabled in config`,
+          severity: 'low',
+          framework: context.framework
+        });
+        continue;
+      }
+
       try {
         const result = await rule.check(context);
         checks.push(result);
