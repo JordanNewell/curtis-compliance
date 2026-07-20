@@ -514,6 +514,29 @@ export class ComplianceEngine {
     };
   }
 
+  /**
+   * Same as checkCompliance, but also writes an audit-trail event if
+   * config.auditTrail === true. Use this from CLI commands and webhook
+   * handlers; use checkCompliance directly in tests / library code.
+   */
+  async checkAndAudit(
+    context: ComplianceContext,
+    meta: { repo?: string }
+  ): Promise<ComplianceReport> {
+    const report = await this.checkCompliance(context);
+    if (context.config.auditTrail) {
+      const { buildEvent, append } = await import('./audit-trail.js');
+      const event = buildEvent(report, {
+        repo: meta.repo,
+        commit: context.commit,
+        author: context.author,
+        branch: context.branch
+      });
+      await append(event);
+    }
+    return report;
+  }
+
   async checkPR(prContext: {
     files: ChangedFile[];
     commit: string;
