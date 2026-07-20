@@ -142,7 +142,7 @@ hash-chained JSONL log. One file per day at
   "framework": "pci-dss",
   "repo": "acme/payments",
   "commit": "abc123",
-  "author": "jrnew",
+  "author": "JordanNewell",
   "branch": "main",
   "overall_status": "non-compliant",
   "checks": [
@@ -305,7 +305,7 @@ If any of the above changes, this section will be updated to reflect it.
 git clone https://github.com/JordanNewell/curtis-compliance.git
 cd compliance
 npm install
-npm test         # 43 unit tests, ~7s
+npm test         # 44 unit tests, ~5s
 npm run build    # tsc → dist/
 ```
 
