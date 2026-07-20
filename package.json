@@ -25,7 +25,7 @@
     "secrets",
     "pre-commit"
   ],
-  "author": "Jordan Newell <58616955+JordanNewell@users.noreply.github.com>",
+  "author": "Jordan Newell <jordan@jordannewell.com>",
   "license": "MIT",
   "homepage": "https://github.com/JordanNewell/curtis-compliance#readme",
   "repository": {
