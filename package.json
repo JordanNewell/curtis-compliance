@@ -1,7 +1,7 @@
 {
   "name": "@curtis/compliance",
   "version": "1.1.0",
-  "description": "Automated compliance workflows for fintech development teams",
+  "description": "Open-source compliance checks for fintech code — pre-commit, PR review, and a hash-chained audit trail.",
   "type": "module",
   "main": "dist/compliance.js",
   "bin": {
@@ -12,7 +12,7 @@
     "dev": "tsc --watch",
     "test": "jest",
     "lint": "eslint src --ext .ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "compliance",
@@ -21,13 +21,22 @@
     "pci-dss",
     "fintech",
     "security",
-    "audit"
+    "audit",
+    "secrets",
+    "pre-commit"
   ],
-  "author": "Curtis AI <hello@curtis.ai>",
+  "author": "Jordan Newell <58616955+JordanNewell@users.noreply.github.com>",
   "license": "MIT",
+  "homepage": "https://github.com/curtis-ai/compliance#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/curtis-ai/compliance"
+  },
+  "bugs": {
+    "url": "https://github.com/curtis-ai/compliance/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "commander": "^11.1.0",
