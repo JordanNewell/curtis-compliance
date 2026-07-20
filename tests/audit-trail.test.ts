@@ -7,10 +7,22 @@ import {
   verify,
   query,
   exportEvents,
-  AUDIT_DIR
+  AUDIT_DIR,
+  CURTIS_VERSION
 } from '../src/audit-trail.js';
 import { complianceEngine } from '../src/compliance.js';
 import type { ComplianceReport } from '../src/compliance.js';
+
+// Catches drift between the hardcoded CURTIS_VERSION constant and the
+// canonical version in package.json. Update both together when bumping.
+// (Plain require is fine here — ts-jest compiles test files to CommonJS.)
+const PKG_VERSION = require('../package.json').version;
+
+describe('version sync', () => {
+  test('CURTIS_VERSION matches package.json version', () => {
+    expect(CURTIS_VERSION).toBe(PKG_VERSION);
+  });
+});
 
 const sampleReport = (overrides: Partial<ComplianceReport> = {}): ComplianceReport => ({
   overallStatus: 'compliant',

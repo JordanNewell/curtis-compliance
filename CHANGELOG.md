@@ -38,8 +38,9 @@ This project follows [Semantic Versioning](https://semver.org/).
   long-running processes that need to pick up config changes without a restart.
   `clearConfigCache()` is still available.
 - **`init` pre-commit hook** now resolves `curtis-compliance` from PATH, then
-  `npx --no-install @curtis/compliance`, then `npx --yes @curtis/compliance`.
-  Previously the hook silently failed if the binary wasn't installed globally.
+  `npx --no-install @jordannewell/curtis-compliance`, then
+  `npx --yes @jordannewell/curtis-compliance`. Previously the hook silently
+  failed if the binary wasn't installed globally.
 - **`getComplianceFramework`** now uses the authenticated Octokit instance
   (was: unauthenticated `fetch()` against `api.github.com`, which rate-limited
   at 60 req/hr). It also reads `.curtis/compliance.yaml` (was: `.curtis/config.yaml`).
@@ -72,5 +73,5 @@ Initial release. CLI with `init` / `check` / `report` / `frameworks` / `selftest
 commands; five built-in compliance rules mapped to HIPAA, SOC2, and PCI-DSS;
 GitHub PR integration skeleton.
 
-[1.1.0]: https://github.com/curtis-ai/compliance/releases/tag/v1.1.0
-[1.0.0]: https://github.com/curtis-ai/compliance/releases/tag/v1.0.0
+[1.1.0]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.1.0
+[1.0.0]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.0.0

@@ -1,5 +1,5 @@
 {
-  "name": "@curtis/compliance",
+  "name": "@jordannewell/curtis-compliance",
   "version": "1.1.0",
   "description": "Open-source compliance checks for fintech code — pre-commit, PR review, and a hash-chained audit trail.",
   "type": "module",
@@ -27,13 +27,13 @@
   ],
   "author": "Jordan Newell <58616955+JordanNewell@users.noreply.github.com>",
   "license": "MIT",
-  "homepage": "https://github.com/curtis-ai/compliance#readme",
+  "homepage": "https://github.com/JordanNewell/curtis-compliance#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/curtis-ai/compliance"
+    "url": "https://github.com/JordanNewell/curtis-compliance"
   },
   "bugs": {
-    "url": "https://github.com/curtis-ai/compliance/issues"
+    "url": "https://github.com/JordanNewell/curtis-compliance/issues"
   },
   "publishConfig": {
     "access": "public"

@@ -10,13 +10,14 @@ import { complianceEngine, ComplianceFramework, ComplianceReport } from './compl
 import { readFile } from 'fs/promises';
 import { glob } from 'glob';
 import { loadConfig } from './config.js';
+import { CURTIS_VERSION } from './audit-trail.js';
 
 const program = new Command();
 
 program
   .name('curtis-compliance')
   .description('Automated compliance for fintech development')
-  .version('1.0.0');
+  .version(CURTIS_VERSION);
 
 /**
  * Initialize Curtis Compliance in a project
@@ -75,7 +76,7 @@ echo "🛡️ Running Curtis Compliance checks..."
 if command -v curtis-compliance >/dev/null 2>&1; then
   curtis-compliance check
 else
-  npx --no-install @curtis/compliance check 2>/dev/null || npx --yes @curtis/compliance check
+  npx --no-install @jordannewell/curtis-compliance check 2>/dev/null || npx --yes @jordannewell/curtis-compliance check
 fi
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
