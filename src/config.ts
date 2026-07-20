@@ -19,8 +19,8 @@ export interface CurtisConfig {
 
 let cachedConfig: CurtisConfig | null = null;
 
-export async function loadConfig(): Promise<CurtisConfig> {
-  if (cachedConfig) {
+export async function loadConfig(options: { bustCache?: boolean } = {}): Promise<CurtisConfig> {
+  if (cachedConfig && !options.bustCache) {
     return cachedConfig;
   }
 

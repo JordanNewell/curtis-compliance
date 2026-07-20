@@ -6,6 +6,7 @@
 
 import { complianceEngine, ComplianceReport, ComplianceFramework } from './compliance.js';
 import { Octokit } from '@octokit/rest';
+import * as yaml from 'js-yaml';
 
 interface PRContext {
   owner: string;
@@ -75,7 +76,12 @@ export class PRComplianceReview {
     diff: string;
     status: 'added' | 'modified' | 'deleted';
   }>> {
-    const filesWithContent = [];
+    const filesWithContent: Array<{
+      path: string;
+      content: string;
+      diff: string;
+      status: 'added' | 'modified' | 'deleted';
+    }> = [];
 
     for (const file of files) {
       if (file.status === 'deleted') {
@@ -97,7 +103,11 @@ export class PRComplianceReview {
           ref: this.context.commitSha
         });
 
-        // @ts-ignore - content is guaranteed to exist for non-deleted files
+        // getContent returns an array for directories; skip those.
+        if (Array.isArray(fileData) || fileData.type !== 'file') {
+          continue;
+        }
+
         const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
 
         filesWithContent.push({
@@ -287,8 +297,8 @@ export async function handlePRWebhook(payload: any, octokit: Octokit): Promise<v
   const pr = payload.pull_request;
   const repo = payload.repository;
 
-  // Get compliance framework from repo config
-  const framework = await getComplianceFramework(repo.owner.login, repo.name);
+  // Get compliance framework from repo config (uses authenticated Octokit → 5000 req/hr)
+  const framework = await getComplianceFramework(octokit, repo.owner.login, repo.name);
 
   const context: PRContext = {
     owner: repo.owner.login,
@@ -303,17 +313,27 @@ export async function handlePRWebhook(payload: any, octokit: Octokit): Promise<v
   await reviewer.review();
 }
 
-async function getComplianceFramework(owner: string, repo: string): Promise<ComplianceFramework> {
+async function getComplianceFramework(octokit: Octokit, owner: string, repo: string): Promise<ComplianceFramework> {
   try {
-    // Try to read from .curtis/config.yaml in the repo
-    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/.curtis/config.yaml`);
-    if (response.ok) {
-      // Parse YAML for framework setting
-      // For now, default to soc2
+    const { data } = await octokit.repos.getContent({
+      owner,
+      repo,
+      path: '.curtis/compliance.yaml'
+    });
+
+    if (Array.isArray(data) || data.type !== 'file') {
       return 'soc2';
     }
+
+    const content = Buffer.from(data.content, 'base64').toString('utf-8');
+    const parsed = yaml.load(content) as { framework?: string } | null;
+
+    const framework = parsed?.framework;
+    if (framework && ['hipaa', 'soc2', 'pci-dss', 'gdpr', 'custom'].includes(framework)) {
+      return framework as ComplianceFramework;
+    }
   } catch (error) {
-    // Fallback to default
+    // File missing or unreadable — fall through to default
   }
 
   return 'soc2';
