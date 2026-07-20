@@ -31,8 +31,7 @@ graph LR
     J --> K[.curtis/audit/YYYY/MM/DD.jsonl]
 ```
 
-Every compliance check produces a tamper-evident audit event — see
-[Audit Trail](#3-audit-trail--tamper-evidence) below.
+Every compliance check produces a tamper-evident audit event — see [Audit Trail](#3-audit-trail--tamper-evidence) below.
 
 ## Quick Start
 
@@ -81,7 +80,18 @@ block_on_failure: true
 
 ### 2. PR Compliance Reviews
 
- Curtis automatically comments on PRs:
+Trigger a one-off review of any PR using a GitHub PAT:
+
+```bash
+export GITHUB_TOKEN=ghp_xxx   # repo scope
+
+curtis-compliance review:pr 42 \
+  --owner acme \
+  --repo payments \
+  --framework pci-dss
+```
+
+Curtis posts a review comment and sets the commit status:
 
 ```markdown
 ## 🔍 Curtis Compliance Review
@@ -97,6 +107,10 @@ block_on_failure: true
 
 [View full report →](https://curtis.ai/pr/123/compliance)
 ```
+
+For automatic PR reviews on every push, run `handlePRWebhook` from your own
+GitHub App or CI worker (a hosted Curtis App is on the roadmap — see
+[Roadmap](#roadmap)).
 
 ### 3. Audit Trail + Tamper Evidence
 
@@ -202,13 +216,18 @@ docker run -d \
 
 ## Roadmap
 
+- [x] Hash-chained audit trail with tamper evidence
+- [x] CSV / JSON evidence export
+- [x] `review:pr` CLI command (PAT-based)
+- [x] Expanded secret detection (AWS / GCP / OpenAI / Anthropic / Stripe / GitLab / Slack / PEM blocks)
+- [ ] Hosted GitHub App (automatic PR reviews without PAT setup)
 - [ ] VS Code extension
-- [ ] GitLab integration
-- [ ] Bitbucket integration
-- [ ] Custom compliance frameworks
+- [ ] GitLab / Bitbucket integration
+- [ ] Custom compliance frameworks (beyond HIPAA / SOC2 / PCI-DSS / GDPR)
 - [ ] Compliance report export (PDF)
-- [ ] Slack/Teams notifications
-- [ ] AWS/Azure/GCP policy checks
+- [ ] Slack / Teams notifications
+- [ ] AWS / Azure / GCP policy checks
+- [ ] Old audit file compression (>30 days)
 
 ## Pricing
 
