@@ -135,13 +135,6 @@ describe('Rule enable/disable via config.rules', () => {
 });
 
 describe('Framework filtering', () => {
-  test('gdpr framework applies no built-in rules → empty checks', async () => {
-    const file = await loadFixture('leaky.ts');
-    const report = await complianceEngine.checkCompliance(ctx([file], 'gdpr'));
-    expect(report.checks).toHaveLength(0);
-    expect(report.overallStatus).toBe('compliant');
-  });
-
   test('hipaa applies 5 rules', async () => {
     const file = await loadFixture('leaky.ts');
     const report = await complianceEngine.checkCompliance(ctx([file], 'hipaa'));

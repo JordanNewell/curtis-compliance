@@ -25,7 +25,7 @@ Curtis automates the part that lives in the code:
 - ✅ One-shot PR review via CLI + GitHub PAT
 - ✅ Hash-chained, tamper-evident audit trail on disk
 - ✅ CSV / JSON evidence export for SOC2 / PCI-DSS auditors
-- ✅ HIPAA, SOC2, PCI-DSS, and GDPR framework presets with real citations
+- ✅ HIPAA, SOC2, and PCI-DSS framework presets with real citations
 
 ## How It Works
 
@@ -271,7 +271,7 @@ npx @jordannewell/curtis-compliance init --framework pci-dss
 - [ ] Hosted GitHub App for automatic PR reviews without PAT setup
 - [ ] VS Code extension
 - [ ] GitLab / Bitbucket support
-- [ ] Custom compliance frameworks (beyond the four presets)
+- [ ] Custom compliance frameworks (beyond the three presets)
 - [ ] PDF report export
 - [ ] Slack / Teams notifications
 - [ ] AWS / Azure / GCP policy checks
@@ -305,7 +305,7 @@ If any of the above changes, this section will be updated to reflect it.
 git clone https://github.com/JordanNewell/curtis-compliance.git
 cd compliance
 npm install
-npm test         # 44 unit tests, ~5s
+npm test         # 43 unit tests, ~5s
 npm run build    # tsc → dist/
 ```
 
@@ -326,7 +326,7 @@ Pull requests welcome at
 
 Areas especially worth contributing:
 - Additional secret-detection patterns (especially non-AWS cloud providers)
-- Framework presets beyond the four built in (e.g. ISO 27001, FedRAMP)
+- Framework presets beyond the three built in (e.g. ISO 27001, FedRAMP, GDPR)
 - The PDF export feature on the roadmap
 - The audit-logging rule's comment-awareness (it currently false-positives on
   the literal `export` keyword in TypeScript — see

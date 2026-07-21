@@ -3,6 +3,21 @@
 All notable changes to Curtis Compliance are documented here.
 This project follows [Semantic Versioning](https://semver.org/).
 
+## [1.1.1] — 2026-07-20
+
+### Fixed
+
+- **Removed the `gdpr` framework.** It was declared in the
+  `ComplianceFramework` enum and listed by `curtis-compliance frameworks`, but
+  no rule included `'gdpr'` in its `frameworks:` array — so running
+  `--framework gdpr` produced an empty report that always said "compliant".
+  The README's claim of "GDPR framework presets with real citations" was
+  false. `gdpr` is dropped from the enum, the `frameworks` listing, and the
+  README. (The previous regression test that asserted gdpr → empty checks was
+  documenting the bug; it is removed. Test count drops from 44 to 43.)
+  GDPR support may return in a future release if rule mappings that fit a
+  code-pattern scanner are added.
+
 ## [1.1.0] — 2026-07-20
 
 ### Added
@@ -73,5 +88,6 @@ Initial release. CLI with `init` / `check` / `report` / `frameworks` / `selftest
 commands; five built-in compliance rules mapped to HIPAA, SOC2, and PCI-DSS;
 GitHub PR integration skeleton.
 
+[1.1.1]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.1.1
 [1.1.0]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.1.0
 [1.0.0]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.0.0

@@ -353,7 +353,6 @@ program
     console.log('  HIPAA       - Healthcare (Protected Health Information)');
     console.log('  SOC2        - Service Organization Control 2');
     console.log('  PCI-DSS     - Payment Card Industry Data Security Standard');
-    console.log('  GDPR        - General Data Protection Regulation');
     console.log('  Custom      - Define your own compliance rules\n');
   });
 

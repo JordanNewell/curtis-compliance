@@ -329,7 +329,7 @@ async function getComplianceFramework(octokit: Octokit, owner: string, repo: str
     const parsed = yaml.load(content) as { framework?: string } | null;
 
     const framework = parsed?.framework;
-    if (framework && ['hipaa', 'soc2', 'pci-dss', 'gdpr', 'custom'].includes(framework)) {
+    if (framework && ['hipaa', 'soc2', 'pci-dss', 'custom'].includes(framework)) {
       return framework as ComplianceFramework;
     }
   } catch (error) {
