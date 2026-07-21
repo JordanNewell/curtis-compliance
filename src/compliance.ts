@@ -14,7 +14,6 @@ export const ComplianceFramework = z.enum([
   'hipaa',
   'soc2',
   'pci-dss',
-  'gdpr',
   'custom'
 ]);
 
