@@ -331,3 +331,15 @@ Areas especially worth contributing:
 - The audit-logging rule's comment-awareness (it currently false-positives on
   the literal `export` keyword in TypeScript — see
   `tests/compliance.test.ts` for the locked regression test)
+
+## Support This Project
+
+Curtis Compliance is MIT-licensed, free, and intentionally has no paid tier.
+If it saves you or your team time, the cleanest ways to support continued
+development are:
+
+- [Buy me a coffee](https://www.buymeacoffee.com/jordannewell)
+- [Sponsor on GitHub](https://github.com/sponsors/JordanNewell)
+
+Either is appreciated; neither unlocks any features — everything Curtis does
+is already available to everyone.

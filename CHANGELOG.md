@@ -18,6 +18,12 @@ This project follows [Semantic Versioning](https://semver.org/).
   GDPR support may return in a future release if rule mappings that fit a
   code-pattern scanner are added.
 
+### Changed
+
+- **README: added a "Support This Project" section** with Buy Me a Coffee
+  and GitHub Sponsors links. No paid tier is introduced; the framing in the
+  README ("no paid tier, no SaaS dashboard, no hosted offering") is unchanged.
+
 ## [1.1.0] — 2026-07-20
 
 ### Added
