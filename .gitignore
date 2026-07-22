@@ -9,6 +9,9 @@ dist/
 compliance-report.json
 *.log
 
+# Test coverage (Jest output — never commit, contains fixture snippets)
+coverage/
+
 # IDE / OS
 .vscode/
 .idea/
