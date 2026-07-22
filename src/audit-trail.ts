@@ -16,7 +16,7 @@
  *   - Concurrent-writer locking (single-process CLI assumes exclusive write)
  */
 
-import { createHash } from 'crypto';
+import { createHash, randomUUID } from 'crypto';
 import { readFile, mkdir, appendFile, readdir } from 'fs/promises';
 import { join } from 'path';
 import { createInterface } from 'readline';
@@ -71,7 +71,7 @@ export function buildEvent(
 ): AuditEvent {
   return {
     timestamp: new Date().toISOString(),
-    event_id: crypto.randomUUID(),
+    event_id: randomUUID(),
     event_type: 'compliance_check',
     framework: report.framework,
     repo: meta.repo ?? 'local',
