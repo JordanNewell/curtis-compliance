@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 900px; height: 540px; overflow: hidden; }
+  body {
+    background: #010409;
+    font-family: Consolas, 'Cascadia Code', 'JetBrains Mono', monospace;
+    padding: 24px;
+  }
+  .terminal {
+    width: 852px;
+    height: 492px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow:
+      0 30px 60px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.02);
+  }
+  .titlebar {
+    background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+    border-bottom: 1px solid #30363d;
+    padding: 11px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.red { background: #ff5f56; }
+  .dot.yellow { background: #ffbd2e; }
+  .dot.green { background: #27c93f; }
+  .title {
+    color: #7d8590;
+    font-size: 12.5px;
+    margin-left: 14px;
+    font-family: -apple-system, system-ui, sans-serif;
+  }
+  .body {
+    padding: 22px 26px 24px;
+    flex: 1;
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .prompt { color: #39d353; }
+  .branch { color: #a371f7; }
+  .path { color: #7d8590; }
+  .cmd { color: #79c0ff; }
+  .pass { color: #39d353; font-weight: bold; }
+  .fail { color: #f85149; font-weight: bold; }
+  .warn { color: #d29922; font-weight: bold; }
+  .muted { color: #7d8590; }
+  .cite { color: #d2a8ff; }
+  .rule { color: #e6edf3; }
+  .header { color: #58a6ff; font-weight: bold; }
+  .divider { color: #21262d; }
+  .block { color: #f85149; font-weight: bold; }
+  .gap { height: 8px; }
+</style>
+</head>
+<body>
+<div class="terminal">
+  <div class="titlebar">
+    <div class="dot red"></div>
+    <div class="dot yellow"></div>
+    <div class="dot green"></div>
+    <div class="title">curtis-compliance — payment-service</div>
+  </div>
+  <div class="body">
+    <div><span class="prompt">~/payment-service</span> <span class="branch">(main)</span> <span class="cmd">curtis-compliance check --framework pci-dss</span></div>
+    <div class="gap"></div>
+    <div><span class="header">Curtis Compliance v1.1.2</span>  <span class="muted">scanning 47 files against PCI-DSS rule pack</span></div>
+    <div class="gap"></div>
+    <div><span class="pass">✓ PASS</span>  <span class="rule">tls-in-transit</span>          <span class="path">src/api/payments.ts:42</span></div>
+    <div>         <span class="cite">PCI-DSS 4.3.1</span>  <span class="muted">card data transmitted over HTTPS</span></div>
+    <div class="gap"></div>
+    <div><span class="pass">✓ PASS</span>  <span class="rule">no-secrets-in-code</span>     <span class="path">src/api/payments.ts</span></div>
+    <div>         <span class="cite">PCI-DSS 8.6.2</span></div>
+    <div class="gap"></div>
+    <div><span class="fail">✗ FAIL</span>  <span class="rule">no-plaintext-pii</span>       <span class="path">src/legacy/import.php:18</span></div>
+    <div>         <span class="cite">PCI-DSS 3.4.1</span>  <span class="muted">card number stored without encryption</span></div>
+    <div class="gap"></div>
+    <div><span class="fail">✗ FAIL</span>  <span class="rule">audit-log-required</span>     <span class="path">src/api/refund.ts:7</span></div>
+    <div>         <span class="cite">PCI-DSS 10.2.1</span>  <span class="muted">refund path missing audit event</span></div>
+    <div class="gap"></div>
+    <div><span class="warn">! WARN</span>  <span class="rule">validate-user-input</span>     <span class="path">src/api/webhook.ts:23</span></div>
+    <div>         <span class="cite">PCI-DSS 6.5.1</span>  <span class="muted">unvalidated JSON body from webhook source</span></div>
+    <div class="gap"></div>
+    <div><span class="divider">────────────────────────────────────────────────────────────</span></div>
+    <div>Result:  <span class="fail">2 fail</span>  ·  <span class="warn">1 warn</span>  ·  <span class="pass">2 pass</span>  <span class="muted">·  47 files  ·  0.3s</span></div>
+    <div class="gap"></div>
+    <div><span class="muted">audit event appended →</span>  <span class="path">.curtis/audit/2026/07/2026-07-22.jsonl</span></div>
+    <div><span class="muted">prev_hash</span>  b8d4f6a...e293   <span class="muted">→</span>  <span class="pass">chain intact ✓</span></div>
+    <div class="gap"></div>
+    <div><span class="block">commit blocked — fix the violations above</span></div>
+  </div>
+</div>
+</body>
+</html>

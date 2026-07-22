@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1280px; height: 640px; overflow: hidden; }
+  body {
+    background:
+      radial-gradient(ellipse 800px 600px at 20% 30%, rgba(57, 211, 83, 0.10), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 80% 80%, rgba(88, 166, 255, 0.08), transparent 60%),
+      linear-gradient(135deg, #0a0e14 0%, #0d1117 60%, #010409 100%);
+    color: #e6edf3;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 90px;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(88, 166, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(88, 166, 255, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    pointer-events: none;
+  }
+  .badge-row {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 36px;
+    font-family: Consolas, 'Cascadia Code', monospace;
+    font-size: 13px;
+    color: #7d8590;
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 2;
+  }
+  .badge-row .sep { color: #30363d; }
+  .badge-row .ok { color: #39d353; }
+  .hero {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 32px;
+  }
+  .shield {
+    width: 96px;
+    height: 110px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 24px rgba(57, 211, 83, 0.4));
+  }
+  h1 {
+    font-size: 88px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    background: linear-gradient(180deg, #ffffff 0%, #8b949e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .tagline {
+    color: #b1bac4;
+    font-size: 26px;
+    line-height: 1.4;
+    margin-bottom: 38px;
+    max-width: 880px;
+    position: relative;
+    z-index: 2;
+    font-weight: 400;
+  }
+  .chips {
+    display: flex;
+    gap: 14px;
+    position: relative;
+    z-index: 2;
+  }
+  .chip {
+    font-family: Consolas, 'Cascadia Code', monospace;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 1px solid rgba(57, 211, 83, 0.4);
+    border-radius: 6px;
+    background: rgba(57, 211, 83, 0.07);
+    color: #e6edf3;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 0.06em;
+  }
+  .chip::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #39d353;
+    box-shadow: 0 0 8px #39d353;
+  }
+  .footer {
+    position: absolute;
+    bottom: 36px;
+    left: 90px;
+    right: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Consolas, 'Cascadia Code', monospace;
+    font-size: 13px;
+    color: #7d8590;
+    z-index: 2;
+  }
+  .url { color: #e6edf3; }
+  .meta { color: #7d8590; }
+  .meta .accent { color: #39d353; }
+</style>
+</head>
+<body>
+  <div class="badge-row">
+    <span class="ok">● MIT</span>
+    <span class="sep">·</span>
+    <span class="ok">● v1.1.2</span>
+    <span class="sep">·</span>
+    <span class="ok">● CI passing</span>
+    <span class="sep">·</span>
+    <span>43 tests</span>
+    <span class="sep">·</span>
+    <span>TypeScript</span>
+  </div>
+  <div class="hero">
+    <svg class="shield" viewBox="0 0 96 110" fill="none">
+      <path d="M48 4 L88 19 V55 C88 83 72 100 48 106 C24 100 8 83 8 55 V19 Z"
+            stroke="#39d353" stroke-width="3" fill="rgba(57, 211, 83, 0.08)"/>
+      <path d="M28 55 L42 70 L70 38"
+            stroke="#39d353" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <h1>Curtis Compliance</h1>
+  </div>
+  <p class="tagline">Open-source compliance checks for fintech code.<br>Pre-commit gate, PR review, and a hash-chained audit trail for SOC2 / PCI-DSS auditors.</p>
+  <div class="chips">
+    <span class="chip">HIPAA</span>
+    <span class="chip">SOC 2</span>
+    <span class="chip">PCI-DSS</span>
+  </div>
+  <div class="footer">
+    <div class="url">github.com/JordanNewell/curtis-compliance</div>
+    <div class="meta"><span class="accent">●</span> ship code that passes audit</div>
+  </div>
+</body>
+</html>

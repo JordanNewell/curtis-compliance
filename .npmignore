@@ -4,6 +4,9 @@ tests/
 jest.config.cjs
 tsconfig.json
 
+# README assets (referenced via raw.githubusercontent.com URLs from npm)
+assets/
+
 # Source maps (reference src/ paths we don't ship)
 **/*.map
 
