@@ -3,6 +3,38 @@
 All notable changes to Curtis Compliance are documented here.
 This project follows [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] — 2026-07-22
+
+### Changed
+
+- **`engines.node` bumped from `>=18.0.0` to `>=20.0.0`.** Node 18
+  reached end-of-life on April 30, 2025; the previous declaration was
+  claiming support for an unsupported runtime. This is technically a
+  breaking change (hence the minor bump). If you are still on Node 18,
+  pin to `@jordannewell/curtis-compliance@1.1.2`.
+
+### Added
+
+- **`files` allowlist in `package.json`.** Replaces implicit reliance
+  on the `.npmignore` denylist. Same published tarball contents;
+  cleaner package metadata. Belt alongside the suspenders.
+- **README hero banner, terminal screenshot, social preview image.**
+  Brings the GitHub repo page in line with what someone evaluating a
+  compliance tool expects to see. Image sources in `assets/` for
+  future re-rendering.
+- **CI badge** added to the README badge row (CI itself shipped in
+  1.1.2; the badge is just surfacing it).
+- **CI matrix updated** to Node 20 / 22 / 24 (matches the new engines
+  floor; drops EOL Node 18).
+
+### Already on master since the 1.1.2 tag, now formally released
+
+- `SECURITY.md` — vulnerability-reporting policy
+- `CONTRIBUTING.md` — not accepting external PRs yet
+- `.github/FUNDING.yml` — Sponsor button
+- `.github/workflows/ci.yml` — test workflow
+- Branch protection on master
+
 ## [1.1.2] — 2026-07-22
 
 ### Fixed
@@ -126,6 +158,7 @@ Initial release. CLI with `init` / `check` / `report` / `frameworks` / `selftest
 commands; five built-in compliance rules mapped to HIPAA, SOC2, and PCI-DSS;
 GitHub PR integration skeleton.
 
+[1.2.0]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.2.0
 [1.1.2]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.1.2
 [1.1.1]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.1.1
 [1.1.0]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.1.0
