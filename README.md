@@ -315,18 +315,35 @@ GitHub-integration modules are covered by manual smoke tests instead.
 
 See [CHANGELOG.md](CHANGELOG.md) for release history.
 
+## Disclaimer
+
+Curtis Compliance is a **static code-pattern scanner**. A passing run does
+**not** mean your codebase is HIPAA-, SOC2-, or PCI-DSS-compliant — only that
+it does not trip the specific rules currently shipped.
+
+This tool is **not legal advice** and does **not** establish any attorney-
+client or advisor relationship. It is **not a substitute for** a formal
+compliance audit, an attorney review, or your own internal compliance
+process. The cited frameworks are referenced for engineering convenience and
+may be incomplete, out of date, or interpreted differently by your auditor.
+
+You are responsible for your own compliance posture. Use at your own risk.
+See [LICENSE](LICENSE) for the full warranty disclaimer.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
 
 ## Contributing
 
-Pull requests welcome at
-[github.com/JordanNewell/curtis-compliance](https://github.com/JordanNewell/curtis-compliance).
+Currently solo-maintained — see [CONTRIBUTING.md](CONTRIBUTING.md). Not
+accepting external pull requests at this time, but bug reports, security
+reports, and framework requests are welcome via Issues.
 
-Areas especially worth contributing:
+Areas on the roadmap (informational, not a request for PRs):
+
 - Additional secret-detection patterns (especially non-AWS cloud providers)
-- Framework presets beyond the three built in (e.g. ISO 27001, FedRAMP, GDPR)
+- Framework presets beyond the three built in (e.g. ISO 27001, FedRAMP)
 - The PDF export feature on the roadmap
 - The audit-logging rule's comment-awareness (it currently false-positives on
   the literal `export` keyword in TypeScript — see
