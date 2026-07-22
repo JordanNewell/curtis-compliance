@@ -3,6 +3,38 @@
 All notable changes to Curtis Compliance are documented here.
 This project follows [Semantic Versioning](https://semver.org/).
 
+## [1.1.2] — 2026-07-22
+
+### Fixed
+
+- **Audit-trail event_id generation now works on Node 18.** `buildEvent`
+  in `src/audit-trail.ts` referenced global `crypto.randomUUID()`, which
+  only exists as a bare global on Node 19+. The `engines` field declares
+  `>=18.0.0` as supported; on Node 18, every audit-emitting code path
+  threw `ReferenceError: crypto is not defined`. Fixed by importing
+  `randomUUID` from the existing `'crypto'` module import alongside
+  `createHash`. Discovered by the new CI workflow's Node 18 matrix line.
+
+### Changed
+
+- **README: added a Disclaimer section** making explicit that a passing
+  run is not formal HIPAA/SOC2/PCI-DSS compliance, the tool is not legal
+  advice, and it is not a substitute for a formal audit.
+
+### Added
+
+- **SECURITY.md** — vulnerability-reporting policy (email-based private
+  reporting, 48h / 5-day / 30-day response SLAs, scope and out-of-scope).
+- **CONTRIBUTING.md** — clarifies that external PRs are not being
+  accepted yet; bug / security / framework requests via Issues welcome.
+- **GitHub Actions CI** — runs the test suite against Node 18 / 20 / 22
+  on every push and pull request to master. This is how the Node 18
+  audit-trail bug above was caught.
+- **FUNDING.yml** — surfaces a "Sponsor" button (Buy Me a Coffee, GitHub
+  Sponsors) in the GitHub repo UI.
+- **Branch protection** on master (no force-push, no deletions, required
+  linear history).
+
 ## [1.1.1] — 2026-07-20
 
 ### Fixed
@@ -94,6 +126,7 @@ Initial release. CLI with `init` / `check` / `report` / `frameworks` / `selftest
 commands; five built-in compliance rules mapped to HIPAA, SOC2, and PCI-DSS;
 GitHub PR integration skeleton.
 
+[1.1.2]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.1.2
 [1.1.1]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.1.1
 [1.1.0]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.1.0
 [1.0.0]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.0.0
