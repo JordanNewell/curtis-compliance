@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1280px; height: 400px; overflow: hidden; }
+  body {
+    background:
+      radial-gradient(ellipse at top right, rgba(57, 211, 83, 0.08), transparent 60%),
+      linear-gradient(135deg, #0a0e14 0%, #0d1117 60%, #010409 100%);
+    color: #e6edf3;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(88, 166, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(88, 166, 255, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+  .chain {
+    position: absolute;
+    right: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.32;
+    font-family: Consolas, 'Cascadia Code', monospace;
+    font-size: 11px;
+    line-height: 1.65;
+    color: #39d353;
+    text-align: right;
+    white-space: pre;
+    user-select: none;
+    border-left: 1px solid rgba(57, 211, 83, 0.2);
+    padding-left: 20px;
+  }
+  .chain .hash { color: #7d8590; }
+  .chain .arrow { color: #58a6ff; }
+  .chain .label { color: #7d8590; }
+  .chain .val { color: #e6edf3; }
+  .chain .new { color: #39d353; font-weight: bold; }
+  .content {
+    position: relative;
+    z-index: 2;
+    max-width: 740px;
+  }
+  .shield-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+  .shield {
+    width: 56px;
+    height: 64px;
+    filter: drop-shadow(0 0 12px rgba(57, 211, 83, 0.35));
+  }
+  .eyebrow {
+    font-family: Consolas, 'Cascadia Code', monospace;
+    color: #39d353;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  h1 {
+    font-size: 68px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    margin-bottom: 14px;
+    background: linear-gradient(180deg, #ffffff 0%, #b1bac4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .tagline {
+    color: #b1bac4;
+    font-size: 19px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    max-width: 600px;
+  }
+  .chips {
+    display: flex;
+    gap: 10px;
+  }
+  .chip {
+    font-family: Consolas, 'Cascadia Code', monospace;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border: 1px solid rgba(57, 211, 83, 0.35);
+    border-radius: 4px;
+    background: rgba(57, 211, 83, 0.06);
+    color: #e6edf3;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.05em;
+  }
+  .chip::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #39d353;
+    box-shadow: 0 0 6px #39d353;
+  }
+</style>
+</head>
+<body>
+  <div class="chain"><span class="label">audit trail</span> <span class="arrow">·</span> <span class="label">tamper-evident</span>
+
+<span class="label">prev_hash</span>
+<span class="hash">0000a3c7f3...d821</span>
+<span class="hash">7f3b9e2c1a...c104</span>
+<span class="hash">b8d4f6a9e2...e293</span>
+<span class="arrow">↓</span>
+<span class="new">[ NEW EVENT ]</span>
+
+<span class="label">event_id</span>
+<span class="val">9d7c3f2a-8b1e</span>
+<span class="val">-4c2a-9d3f</span>
+<span class="val">-1e5b8c7a2d34</span>
+
+<span class="label">framework</span>
+<span class="val">pci-dss</span>
+
+<span class="label">status</span>
+<span class="new">pass ✓</span>
+
+<span class="label">chain</span>
+<span class="new">intact</span></div>
+  <div class="content">
+    <div class="shield-row">
+      <svg class="shield" viewBox="0 0 56 64" fill="none">
+        <path d="M28 2 L52 11 V32 C52 48 42 58 28 62 C14 58 4 48 4 32 V11 Z"
+              stroke="#39d353" stroke-width="2" fill="rgba(57, 211, 83, 0.08)"/>
+        <path d="M16 32 L25 41 L42 22"
+              stroke="#39d353" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <div class="eyebrow">Open-source · MIT · v1.1.2</div>
+    </div>
+    <h1>Curtis Compliance</h1>
+    <p class="tagline">Open-source compliance checks for fintech code. Pre-commit gate, PR review, and a hash-chained audit trail you can hand to your SOC2 / PCI-DSS auditor.</p>
+    <div class="chips">
+      <span class="chip">HIPAA</span>
+      <span class="chip">SOC 2</span>
+      <span class="chip">PCI-DSS</span>
+    </div>
+  </div>
+</body>
+</html>
