@@ -7,13 +7,16 @@
   html, body { width: 1280px; height: 400px; overflow: hidden; }
   body {
     background:
-      radial-gradient(ellipse at top right, rgba(57, 211, 83, 0.08), transparent 60%),
+      radial-gradient(ellipse 900px 500px at 50% 110%, rgba(57, 211, 83, 0.12), transparent 60%),
+      radial-gradient(ellipse 600px 400px at 50% -10%, rgba(88, 166, 255, 0.08), transparent 60%),
       linear-gradient(135deg, #0a0e14 0%, #0d1117 60%, #010409 100%);
     color: #e6edf3;
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 0 80px;
+    justify-content: center;
+    padding: 40px 80px;
     position: relative;
   }
   body::before {
@@ -26,86 +29,109 @@
     background-size: 48px 48px;
     pointer-events: none;
   }
-  .chain {
+  /* Hash-chain accent running along the bottom edge — visual signature of the audit-trail feature */
+  .chain-accent {
     position: absolute;
-    right: 64px;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0.32;
-    font-family: Consolas, 'Cascadia Code', monospace;
-    font-size: 11px;
-    line-height: 1.65;
-    color: #39d353;
-    text-align: right;
-    white-space: pre;
-    user-select: none;
-    border-left: 1px solid rgba(57, 211, 83, 0.2);
-    padding-left: 20px;
-  }
-  .chain .hash { color: #7d8590; }
-  .chain .arrow { color: #58a6ff; }
-  .chain .label { color: #7d8590; }
-  .chain .val { color: #e6edf3; }
-  .chain .new { color: #39d353; font-weight: bold; }
-  .content {
-    position: relative;
-    z-index: 2;
-    max-width: 740px;
-  }
-  .shield-row {
+    bottom: 22px;
+    left: 80px;
+    right: 80px;
     display: flex;
     align-items: center;
-    gap: 18px;
-    margin-bottom: 22px;
+    gap: 10px;
+    font-family: Consolas, 'Cascadia Code', monospace;
+    font-size: 11px;
+    color: #39d353;
+    opacity: 0.55;
+    letter-spacing: 0.08em;
+    z-index: 2;
   }
-  .shield {
-    width: 56px;
-    height: 64px;
-    filter: drop-shadow(0 0 12px rgba(57, 211, 83, 0.35));
+  .chain-accent .hash {
+    color: #7d8590;
+    font-size: 10px;
   }
+  .chain-accent .pipe {
+    color: #30363d;
+  }
+  .chain-accent .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(57, 211, 83, 0.4) 0%, rgba(57, 211, 83, 0) 100%);
+  }
+  /* Top eyebrow */
   .eyebrow {
     font-family: Consolas, 'Cascadia Code', monospace;
     color: #39d353;
     font-size: 12px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     font-weight: 600;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .eyebrow .sep { color: #30363d; }
+  .eyebrow .item { display: inline-flex; align-items: center; gap: 6px; }
+  .eyebrow .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #39d353;
+    box-shadow: 0 0 6px #39d353;
+  }
+  /* Main hero stack — shield + wordmark + tagline + chips */
+  .stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    z-index: 2;
+  }
+  .shield {
+    width: 64px;
+    height: 72px;
+    filter: drop-shadow(0 0 18px rgba(57, 211, 83, 0.45));
   }
   h1 {
     font-size: 68px;
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1;
-    margin-bottom: 14px;
     background: linear-gradient(180deg, #ffffff 0%, #b1bac4 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-align: center;
   }
   .tagline {
     color: #b1bac4;
-    font-size: 19px;
+    font-size: 18px;
     line-height: 1.5;
-    margin-bottom: 30px;
-    max-width: 600px;
+    max-width: 720px;
+    text-align: center;
+    font-weight: 400;
   }
   .chips {
     display: flex;
     gap: 10px;
+    margin-top: 4px;
   }
   .chip {
     font-family: Consolas, 'Cascadia Code', monospace;
     font-size: 12.5px;
     font-weight: 600;
-    padding: 7px 14px;
-    border: 1px solid rgba(57, 211, 83, 0.35);
+    padding: 7px 16px;
+    border: 1px solid rgba(57, 211, 83, 0.4);
     border-radius: 4px;
-    background: rgba(57, 211, 83, 0.06);
+    background: rgba(57, 211, 83, 0.07);
     color: #e6edf3;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
   }
   .chip::before {
     content: '';
@@ -118,45 +144,41 @@
 </style>
 </head>
 <body>
-  <div class="chain"><span class="label">audit trail</span> <span class="arrow">·</span> <span class="label">tamper-evident</span>
+  <div class="eyebrow">
+    <span class="item"><span class="dot"></span>Open-source</span>
+    <span class="sep">·</span>
+    <span class="item">MIT</span>
+    <span class="sep">·</span>
+    <span class="item">v1.1.2</span>
+  </div>
 
-<span class="label">prev_hash</span>
-<span class="hash">0000a3c7f3...d821</span>
-<span class="hash">7f3b9e2c1a...c104</span>
-<span class="hash">b8d4f6a9e2...e293</span>
-<span class="arrow">↓</span>
-<span class="new">[ NEW EVENT ]</span>
-
-<span class="label">event_id</span>
-<span class="val">9d7c3f2a-8b1e</span>
-<span class="val">-4c2a-9d3f</span>
-<span class="val">-1e5b8c7a2d34</span>
-
-<span class="label">framework</span>
-<span class="val">pci-dss</span>
-
-<span class="label">status</span>
-<span class="new">pass ✓</span>
-
-<span class="label">chain</span>
-<span class="new">intact</span></div>
-  <div class="content">
-    <div class="shield-row">
-      <svg class="shield" viewBox="0 0 56 64" fill="none">
-        <path d="M28 2 L52 11 V32 C52 48 42 58 28 62 C14 58 4 48 4 32 V11 Z"
-              stroke="#39d353" stroke-width="2" fill="rgba(57, 211, 83, 0.08)"/>
-        <path d="M16 32 L25 41 L42 22"
-              stroke="#39d353" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
-      <div class="eyebrow">Open-source · MIT · v1.1.2</div>
-    </div>
+  <div class="stack">
+    <svg class="shield" viewBox="0 0 64 72" fill="none">
+      <path d="M32 2 L60 12 V36 C60 54 48 66 32 70 C16 66 4 54 4 36 V12 Z"
+            stroke="#39d353" stroke-width="2" fill="rgba(57, 211, 83, 0.08)"/>
+      <path d="M20 36 L29 45 L46 26"
+            stroke="#39d353" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
     <h1>Curtis Compliance</h1>
-    <p class="tagline">Open-source compliance checks for fintech code. Pre-commit gate, PR review, and a hash-chained audit trail you can hand to your SOC2 / PCI-DSS auditor.</p>
+    <p class="tagline">Open-source compliance checks for fintech code. Pre-commit gate, PR review, and a hash-chained audit trail you can hand to your SOC 2 / PCI-DSS auditor.</p>
     <div class="chips">
       <span class="chip">HIPAA</span>
       <span class="chip">SOC 2</span>
       <span class="chip">PCI-DSS</span>
     </div>
+  </div>
+
+  <div class="chain-accent">
+    <span class="hash">prev_hash</span>
+    <span>0000a3c7f3</span>
+    <span class="pipe">→</span>
+    <span>7f3b9e2c1a</span>
+    <span class="pipe">→</span>
+    <span>b8d4f6a9e2</span>
+    <span class="pipe">→</span>
+    <span style="color: #39d353; font-weight: 600;">[ new event ]</span>
+    <span class="line"></span>
+    <span class="hash" style="color: #39d353;">chain intact ✓</span>
   </div>
 </body>
 </html>
