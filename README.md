@@ -1,10 +1,15 @@
-# 🛡️ Curtis Compliance
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JordanNewell/curtis-compliance/master/assets/hero.png" alt="Curtis Compliance — Open-source compliance checks for fintech code" width="100%">
+</p>
 
-> Open-source compliance checks for fintech code — pre-commit, PR review, and a
-> hash-chained audit trail you can hand to your SOC2 / PCI-DSS auditor.
+<p align="center">
+  <a href="https://github.com/JordanNewell/curtis-compliance/actions/workflows/ci.yml"><img src="https://github.com/JordanNewell/curtis-compliance/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://www.npmjs.com/package/@jordannewell/curtis-compliance"><img src="https://img.shields.io/npm/v/@jordannewell/curtis-compliance.svg" alt="npm version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/npm/l/@jordannewell/curtis-compliance.svg" alt="license"></a>
+  <a href="https://github.com/JordanNewell/curtis-compliance/releases"><img src="https://img.shields.io/github/v/release/JordanNewell/curtis-compliance?display_name=tag&include_prereleases" alt="latest release"></a>
+</p>
 
-[![npm version](https://img.shields.io/npm/v/@jordannewell/curtis-compliance.svg)](https://www.npmjs.com/package/@jordannewell/curtis-compliance)
-[![license](https://img.shields.io/npm/l/@jordannewell/curtis-compliance.svg)](LICENSE)
+---
 
 Curtis Compliance scans your diff for things regulators care about — plaintext
 secrets, non-TLS calls, missing audit logs, unencrypted sensitive data,
@@ -47,6 +52,10 @@ Every check produces a tamper-evident event — see
 [Audit Trail](#3-audit-trail--tamper-evidence) below.
 
 ## Quick Start
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JordanNewell/curtis-compliance/master/assets/terminal.png" alt="curtis-compliance in action — scanning a payment service against PCI-DSS, blocking a non-compliant commit with citations" width="100%">
+</p>
 
 ```bash
 # Install
