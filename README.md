@@ -341,7 +341,7 @@ See [LICENSE](LICENSE) for the full warranty disclaimer.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+[MIT](LICENSE) © Jordan Newell
 
 ## Contributing
 
