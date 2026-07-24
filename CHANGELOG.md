@@ -3,6 +3,36 @@
 All notable changes to Curtis Compliance are documented here.
 This project follows [Semantic Versioning](https://semver.org/).
 
+## [1.2.1] — 2026-07-24
+
+### Changed
+
+- **README rewritten for sharper positioning.** External reviewers were
+  conflating Curtis Compliance with code-style linters (ESLint, Biome,
+  Nx Conformance) — a category error that signaled the README wasn't
+  sharply positioned. Opening now leads with the category ("static
+  regulatory scanner for fintech code"); new "How it differs" section
+  explicitly contrasts against (a) code-style linters, (b) secret
+  scanners (Gitleaks / TruffleHog / GitGuardian), and (c) compliance
+  automation platforms (Vanta / Drata / Secureframe).
+
+- **Quick Start replaced with a 60-second copy-paste walkthrough** —
+  scratch repo + deliberately-bad commit → see the block + citation
+  in your own terminal. Lower friction for first-time evaluators.
+
+- **"Intentionally no paid tier / no SaaS" → "currently no paid tier."**
+  Leaves the door open for a future hosted offering without overpromising
+  one. No functional change.
+
+- **"What's not in this project" → "Common misconceptions"** — same
+  hygiene content (no Docker image, no curtis.ai domain, no GitHub App),
+  less defensive framing.
+
+### Fixed
+
+- Stale `curtis_version` in the README's example audit-event JSON
+  (`1.1.0` → `1.2.1`).
+
 ## [1.2.0] — 2026-07-22
 
 ### Changed

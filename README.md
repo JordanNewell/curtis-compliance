@@ -184,7 +184,7 @@ hash-chained JSONL log. One file per day at
     { "requirement": "tls-only", "status": "pass", "severity": "high" }
   ],
   "summary": { "critical": 1, "high": 0, "medium": 0, "low": 0, "total": 5 },
-  "curtis_version": "1.1.0",
+  "curtis_version": "1.2.1",
   "prev_hash": "a7192de26a7e8c1d4f5b..."
 }
 ```
