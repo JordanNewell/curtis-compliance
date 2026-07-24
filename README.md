@@ -11,14 +11,31 @@
 
 ---
 
-Curtis Compliance scans your diff for things regulators care about — plaintext
-secrets, non-TLS calls, missing audit logs, unencrypted sensitive data,
-unvalidated user input — and either lets the commit through or blocks it with
-the specific HIPAA / SOC2 / PCI-DSS citation it would fail an audit on.
+Curtis Compliance is a **static regulatory scanner** for fintech code — it
+catches the things auditors care about (plaintext secrets, non-TLS calls,
+missing audit logs, unencrypted sensitive data, unvalidated user input) at
+commit time and blocks non-compliant changes with the specific HIPAA / SOC2 /
+PCI-DSS citation they'd fail an audit on.
 
 Every check produces a timestamped, hash-chained event in a local JSONL log.
 Tamper with a historical event and the chain breaks. Export it as CSV and hand
 it to your auditor. That's the whole product.
+
+## How it differs
+
+Curtis Compliance occupies a spot no other tool sits in — a **dev-loop
+regulatory gate that produces cited, tamper-evident evidence**. The closest
+neighbors aren't really competitors, but the contrast is useful:
+
+| Tool | Category | What Curtis does differently |
+|------|----------|------------------------------|
+| ESLint, Biome, Nx Conformance | Code-style / best-practice linters | Different category entirely. Those enforce style and engineering conventions. Curtis enforces regulatory requirements and cites the failing clause. |
+| Gitleaks, TruffleHog, GitGuardian | Secret scanners | Curtis uses similar detection (21 patterns across 12 providers) but wraps every finding in a compliance workflow — each is a cited audit failure, not just a regex hit. |
+| Vanta, Drata, Secureframe | Compliance automation platforms | Those manage org-wide posture and collect evidence for auditors. Curtis sits inside the developer loop, preventing violations at commit time before they ship. |
+
+If you already use Vanta or Drata, Curtis is the engineering-side complement —
+the thing that makes the controls those platforms attest to actually true in
+the code.
 
 ## Why Curtis Compliance?
 
@@ -57,24 +74,32 @@ Every check produces a tamper-evident event — see
   <img src="https://raw.githubusercontent.com/JordanNewell/curtis-compliance/master/assets/terminal.png" alt="curtis-compliance in action — scanning a payment service against PCI-DSS, blocking a non-compliant commit with citations" width="100%">
 </p>
 
+### See it work in 60 seconds
+
 ```bash
-# Install
+# Install globally (one-time)
 npm install -g @jordannewell/curtis-compliance
 
-# Initialize in your repo
+# In a scratch repo
+mkdir curtis-test && cd curtis-test && git init
 curtis-compliance init --framework pci-dss
 
-# Commit like normal
-git add .
-git commit -m "feat: add payment processing"
+# Stage a deliberately non-compliant commit
+echo "stripe_secret = 'sk_live_PLACEHOLDER_EXAMPLE_KEY'" > payments.ts
+git add payments.ts
+git commit -m "feat: add stripe payment"
 
-# Curtis runs as a pre-commit hook and writes an audit event automatically.
-# Non-compliant commits are blocked with the specific citation they fail:
+# Curtis blocks the commit and cites the failing requirement:
 #
 #   ❌ no-secrets-in-code
-#      🔴 Found 2 potential secret(s) in code. Use environment variables.
-#      → src/payments/stripe.ts:42
+#      🔴 Found 1 potential secret(s) in code. Use environment variables.
+#      → payments.ts:1
+#      → PCI-DSS 3.4 — Render PAN unreadable wherever it is stored.
 ```
+
+Once initialized in a repo, Curtis runs as a pre-commit hook on every
+commit — no extra commands needed. Non-compliant commits are blocked locally
+with the specific HIPAA / SOC2 / PCI-DSS citation they'd fail an audit on.
 
 ## Features
 
@@ -286,15 +311,15 @@ npx @jordannewell/curtis-compliance init --framework pci-dss
 - [ ] AWS / Azure / GCP policy checks
 - [ ] Compression of audit files older than 30 days
 
-There is intentionally **no paid tier**, **no SaaS dashboard**, and
-**no hosted offering**. Curtis Compliance is open-source software you run on
-your own machine. If a hosted version makes sense in the future, it will be
-announced when it exists — not before.
+There is currently **no paid tier** and **no hosted SaaS**. Curtis Compliance
+is MIT-licensed software you run on your own machine. If a hosted version or
+paid tier makes sense in the future, it will be announced when it exists —
+not before.
 
-## What's not in this project
+## Common misconceptions
 
-A few things explicitly **do not exist**, in case you saw an old version of
-this README:
+A few things **don't exist** — listed here to head off confusion, including
+from older drafts of this README:
 
 - **No GitHub App.** The `review:pr` CLI is the only PR-review path today.
 - **No Docker image.** `docker run curtis/compliance` does nothing — there's
