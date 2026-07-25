@@ -1,0 +1,8 @@
+# Normalize line endings. Git stores as LF, checks out native per-OS.
+# Silences the "LF will be replaced by CRLF" warnings on Windows checkouts.
+* text=auto
+
+# Binary files — never normalize.
+*.png binary
+*.jpg binary
+*.ico binary
