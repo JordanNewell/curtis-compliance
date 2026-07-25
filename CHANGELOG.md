@@ -3,6 +3,62 @@
 All notable changes to Curtis Compliance are documented here.
 This project follows [Semantic Versioning](https://semver.org/).
 
+## [1.3.0] — 2026-07-24
+
+### Changed
+
+- **Open-core model introduced.** The MIT core stays free and unchanged in
+  function; a new paid layer, **Curtis Compliance Pro**
+  (`@jordannewell/curtis-compliance-pro`), ships separately for the hosted
+  GitHub App, multi-repo audit rollup, PDF export, and custom frameworks.
+  Core gains a `license` subcommand that detects Pro and defers to it, or
+  prints where to get it. Core itself gates nothing.
+
+- **README rewritten for open-core positioning.** "How it differs" gains a
+  Pro row contrasting with Vanta/Drata. Roadmap splits into "Shipped (MIT
+  core)", "Curtis Pro (in progress)", and "Not built yet". The "Common
+  misconceptions" section that claimed "no pricing tiers / no Team plan /
+  no Enterprise SSO" is replaced with an honest Pro tier table. "Support
+  This Project" now points at Pro as the primary path.
+
+### Fixed
+
+- **Dead `curtis.ai` links in PR review output.** `review:pr` posted a
+  status-check `target_url` and a footer attribution pointing at
+  `curtis.ai` — a domain this project does not own (called out elsewhere in
+  the README as belonging to an unrelated party). Status-check links now
+  point at the PR itself; the footer links at the GitHub repo. Both are
+  overridable via `CURTIS_APP_URL` for when the hosted dashboard ships.
+
+- **Stale Node requirement in README.** Installation said "Node 18+" while
+  `engines.node` has required `>=20.0.0` since v1.2.0.
+
+- **Stale `curtis_version` in the README audit-event example** (`1.2.1` →
+  `1.3.0`).
+
+- **Unsourced "40% of developer time" claim removed.** The "Why Curtis
+  Compliance?" hook previously stated "Fintech teams spend 40% of their time
+  on compliance paperwork" with no citation. Research
+  ([`docs/research/positioning-evidence.md`](docs/research/positioning-evidence.md))
+  found no source for this figure across developer-productivity surveys
+  (SonarSource, IDC, Microsoft Research). Replaced with a sourced figure:
+  "Regulatory compliance consumes 15–20% of operating costs for fintech
+  companies" (National Law Review). For a B2B product, an unsourced stat is a
+  credibility liability — the correction is mandatory, not cosmetic.
+
+### Added
+
+- **`docs/research/positioning-evidence.md`.** Receipt for every load-bearing
+  claim in the README + Pro positioning: market size, compliance burden,
+  competitor pricing, funding landscape, the defensible-novelty gap, and
+  competitive threats (GitHub native push protection, free secret scanners).
+  Every claim has a `CLAIM → EVIDENCE → SOURCE → CONFIDENCE` block.
+
+- **`docs/research/research-instructions.md`.** Self-contained brief for
+  handing ongoing positioning verification to any agent (Miranda, Rooney, a
+  fresh session). Concrete search queries, acceptance criteria, output
+  format, re-verification cadence (quarterly full / monthly competitor watch).
+
 ## [1.2.1] — 2026-07-24
 
 ### Changed

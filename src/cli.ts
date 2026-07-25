@@ -357,6 +357,82 @@ program
   });
 
 /**
+ * License / Pro tier.
+ *
+ * Core is MIT and free forever — it does not gate any feature itself. This
+ * subcommand detects whether @jordannewell/curtis-compliance-pro is installed
+ * and hands off to it (activate / status / verify), or prints where to get it.
+ */
+const license = program.command('license').description('Curtis Compliance Pro license management');
+
+license
+  .command('status')
+  .description('Show Pro license status (plan, seats, expiry)')
+  .action(async () => {
+    const pro = await tryLoadPro();
+    if (!pro) {
+      printProAbsent();
+      return;
+    }
+    await pro.licenseStatus();
+  });
+
+license
+  .command('activate <key>')
+  .description('Activate a Curtis Compliance Pro license key')
+  .action(async (key: string) => {
+    const pro = await tryLoadPro();
+    if (!pro) {
+      printProAbsent();
+      process.exit(1);
+    }
+    await pro.licenseActivate(key);
+  });
+
+license
+  .command('verify')
+  .description('Re-validate the Pro license against the server')
+  .action(async () => {
+    const pro = await tryLoadPro();
+    if (!pro) {
+      printProAbsent();
+      process.exit(1);
+    }
+    await pro.licenseVerify();
+  });
+
+/**
+ * Dynamically resolve the Pro package. Returns null when it isn't installed
+ * (core must never hard-depend on Pro — Pro is the paid layer on top).
+ */
+async function tryLoadPro(): Promise<{
+  licenseStatus: () => Promise<void>;
+  licenseActivate: (key: string) => Promise<void>;
+  licenseVerify: () => Promise<void>;
+} | null> {
+  try {
+    // Dynamic import of an optional peer — cast specifier to string so tsc
+    // doesn't try to resolve a package that isn't installed at build time.
+    const specifier: string = '@jordannewell/curtis-compliance-pro';
+    const mod = await import(/* @vite-ignore */ specifier);
+    return mod.proCli;
+  } catch {
+    return null;
+  }
+}
+
+function printProAbsent(): void {
+  console.log('Curtis Compliance core is MIT-licensed and free. Pro features');
+  console.log('(hosted GitHub App, multi-repo audit rollup, PDF export, custom');
+  console.log('frameworks) ship as a separate package.');
+  console.log('');
+  console.log('  npm install -g @jordannewell/curtis-compliance-pro');
+  console.log('  curtis-compliance-pro activate <key>');
+  console.log('');
+  console.log('Get a Pro license: https://curtiscompliance.com/pro');
+}
+
+/**
  * Self-test
  */
 program
