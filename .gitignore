@@ -22,3 +22,8 @@ Thumbs.db
 # Env
 .env
 .env.local
+
+# AI agent state — never commit. CLAUDE.md rule. Contains session plans,
+# potentially live API keys, and other machine-local runtime state.
+.zcode/
+.claude/
