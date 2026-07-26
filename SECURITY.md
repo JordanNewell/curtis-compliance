@@ -22,7 +22,7 @@ Email **security@jordannewell.com** with:
 
 ## Response timeline
 
-- **Acknowledgement:** within 48 hours
+- **Acknowledgment:** within 72 hours
 - **Initial assessment:** within 5 business days
 - **Fix or mitigation:** target 30 days for high-severity issues
 
