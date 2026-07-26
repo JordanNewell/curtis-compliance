@@ -1,0 +1,40 @@
+name: Bump release badge
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Compute version from tag
+        id: version
+        run: |
+          # Strip leading 'v' from tag name
+          VERSION="${GITHUB_REF_NAME#v}"
+          # Strip common distribution suffixes (e.g., v0.6.1-pypi -> 0.6.1)
+          VERSION="${VERSION%-pypi}"
+          VERSION="${VERSION%-npm}"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Bump badge in README
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          # Match existing badge pattern: release-<digits and dots and optional suffix>-blue
+          sed -i -E "s|badge/release-[0-9][0-9a-z.-]*-blue|badge/release-${VERSION}-blue|g" README.md
+
+      - name: Commit if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(docs): bump release badge to v${{ steps.version.outputs.version }}"
+          file_pattern: README.md
