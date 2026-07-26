@@ -6,7 +6,7 @@
   <a href="https://github.com/JordanNewell/curtis-compliance/actions/workflows/ci.yml"><img src="https://github.com/JordanNewell/curtis-compliance/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://www.npmjs.com/package/@jordannewell/curtis-compliance"><img src="https://img.shields.io/npm/v/@jordannewell/curtis-compliance.svg" alt="npm version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/npm/l/@jordannewell/curtis-compliance.svg" alt="license"></a>
-  <a href="https://github.com/JordanNewell/curtis-compliance/releases"><img src="https://img.shields.io/github/v/release/JordanNewell/curtis-compliance?display_name=tag&include_prereleases" alt="latest release"></a>
+  <a href="https://github.com/JordanNewell/curtis-compliance/releases"><img src="https://img.shields.io/badge/release-1.3.0-blue
 </p>
 
 ---
