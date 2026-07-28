@@ -32,12 +32,11 @@ neighbors aren't really competitors, but the contrast is useful:
 |------|----------|------------------------------|
 | ESLint, Biome, Nx Conformance | Code-style / best-practice linters | Different category entirely. Those enforce style and engineering conventions. Curtis enforces regulatory requirements and cites the failing clause. |
 | Gitleaks, TruffleHog, GitGuardian | Secret scanners | Curtis uses similar detection (21 patterns across 12 providers) but wraps every finding in a compliance workflow — each is a cited audit failure, not just a regex hit. |
-| Vanta, Drata, Secureframe | Compliance automation platforms | Those manage org-wide posture and collect evidence for auditors. Curtis sits inside the developer loop, preventing violations at commit time before they ship. The MIT core does this per-repo; **Curtis Pro** adds the hosted GitHub App + multi-repo rollup that turns those per-commit events into the org-level evidence Vanta/Drata collect. |
+| Vanta, Drata, Secureframe | Compliance automation platforms | Those manage org-wide posture and collect evidence for auditors. Curtis sits inside the developer loop, preventing violations at commit time before they ship — the thing that makes the controls those platforms attest to actually true in the code. A hosted Pro tier to feed Curtis's evidence into Vanta/Drata directly is on the roadmap at [JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro); not shipping yet. |
 
 If you already use Vanta or Drata, Curtis is the engineering-side complement —
 the thing that makes the controls those platforms attest to actually true in
-the code. The [Pro tier](#curtis-compliance-pro) is the bridge between the
-two: it feeds the developer-loop evidence into an org-wide view.
+the code.
 
 ## Why Curtis Compliance?
 
@@ -308,7 +307,7 @@ npx @jordannewell/curtis-compliance init --framework pci-dss
 - [x] Per-rule enable/disable via `.curtis/compliance.yaml`
 - [x] Secret detection across 12 providers
 
-**Curtis Pro (paid, in progress — see [curtiscompliance.com/pro](https://curtiscompliance.com/pro)):**
+**Future: hosted tier (paid, in development — see [JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro)):**
 - [ ] Hosted GitHub App for automatic PR reviews without PAT setup
 - [ ] Multi-repo audit rollup (org-level evidence view)
 - [ ] PDF report export (auditor-ready, signed)
@@ -321,56 +320,27 @@ npx @jordannewell/curtis-compliance init --framework pci-dss
 - [ ] AWS / Azure / GCP policy checks
 - [ ] Compression of audit files older than 30 days
 
-The **MIT core** is free forever. The **Pro tier** adds the hosted + org-wide
-features listed above. See [Curtis Compliance Pro](#curtis-compliance-pro)
-below.
+The **MIT core** is free forever. The hosted tier is tracked at
+[JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro)
+— star that repo if you want a ping when it ships.
 
 ## Common misconceptions
 
 A few things to head off confusion, including from older drafts of this README:
 
-- **No hosted GitHub App yet (in the MIT core).** The `review:pr` CLI with a
-  PAT is the only PR-review path in the core today. The hosted App ships with
-  **Pro** — see [Curtis Compliance Pro](#curtis-compliance-pro).
+- **No hosted GitHub App.** The `review:pr` CLI with a PAT is the only
+  PR-review path. A hosted App is on the roadmap at
+  [JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro);
+  not shipping yet.
 - **No Docker image.** `docker run curtis/compliance` does nothing — there's
   no image published.
 - **No `curtis.ai` website.** That domain belongs to an unrelated party.
   This project lives at
-  [github.com/JordanNewell/curtis-compliance](https://github.com/JordanNewell/curtis-compliance),
-  with the product site at
-  [curtiscompliance.com](https://curtiscompliance.com) (rolling out).
-- **There *is* now a paid tier.** Older READMEs said "no pricing tiers /
-  everything is MIT and free." As of v1.3.0 that's no longer accurate: the
-  **core is MIT and free**; **Pro** is paid. See
-  [Curtis Compliance Pro](#curtis-compliance-pro).
-
-## Curtis Compliance Pro
-
-The MIT core above is everything you need to run compliance checks locally on
-a single repo. **Pro** is the paid layer on top — the parts a fintech or dev
-team pays for:
-
-| Tier | Price | What's included |
-|------|-------|-----------------|
-| **Core** | Free (MIT) | Pre-commit gate, audit trail, CSV/JSON export, PAT-based `review:pr`, the five built-in rules. No limits. |
-| **Pro** | per-seat / mo | Hosted GitHub App (auto PR reviews, no per-dev PAT), multi-repo audit rollup, PDF evidence export, custom frameworks. |
-| **Enterprise** | sales-led | SSO, on-prem deployment, SLA, custom rulesets. |
-
-Pro is a separate package — `@jordannewell/curtis-compliance-pro` — installed
-alongside this one. It wraps the core engine; it doesn't fork or replace it.
-
-```bash
-npm install -g @jordannewell/curtis-compliance-pro
-curtis-compliance-pro activate <key>     # curtiscompliance.com/pro
-```
-
-Core's `curtis-compliance license status` detects Pro and defers to it. If
-Pro isn't installed, it prints where to get it.
-
-**Status:** Pro is rolling out phase by phase. The license gate + CLI shape
-ship in v1.3.0; the hosted App, rollup, PDF, and custom frameworks follow.
-See the [Pro roadmap](https://github.com/JordanNewell/curtis-compliance-pro#roadmap)
-for the phase breakdown.
+  [github.com/JordanNewell/curtis-compliance](https://github.com/JordanNewell/curtis-compliance).
+- **No paid tier yet.** The MIT core is the only thing shipping today. Older
+  READMEs mentioned a Pro tier; the Pro package is in development at
+  [JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro)
+  but nothing is for sale and no npm package exists to install.
 
 ## Development
 
@@ -420,14 +390,16 @@ Areas on the roadmap (informational, not a request for PRs):
   the literal `export` keyword in TypeScript — see
   `tests/compliance.test.ts` for the locked regression test)
 
-Custom frameworks, PDF export, and the hosted App live in
-[Pro](#curtis-compliance-pro), not the core.
+Custom frameworks, PDF export, and the hosted App are tracked at
+[JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro)
+— not the core, and not shipping yet.
 
 ## Support This Project
 
-The **core** is MIT-licensed and free. If you want the hosted + org-wide
-features — or just want to fund development — **[Curtis Compliance Pro](https://curtiscompliance.com/pro)**
-is the primary way to support this project.
+The **core** is MIT-licensed and free. There is no paid tier to buy yet —
+the hosted Pro package is in development at
+[JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro).
+Star that repo if you want a ping when it lands.
 
 For the open-source core itself, sponsorship is welcome and voluntary:
 
