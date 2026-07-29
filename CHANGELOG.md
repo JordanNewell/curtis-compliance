@@ -3,6 +3,23 @@
 All notable changes to Curtis Compliance are documented here.
 This project follows [Semantic Versioning](https://semver.org/).
 
+## [1.3.1] — 2026-07-29
+
+### Changed
+
+- **Pro tier language softened across README, landing page, and `license`
+  subcommand.** The v1.3.0 README positioned Pro as shipping separately and
+  linked to `curtiscompliance.com/pro` — a domain this project does not own.
+  The landing page (`docs/index.html`) carried a Pro CTA. The `license`
+  subcommand printed install instructions for a package that isn't on npm yet.
+  All three are corrected: Pro is now described as in development, links point
+  at the public stub repo
+  ([JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro)),
+  the landing-page CTA is removed, and `printProAbsent()` no longer prints
+  install instructions or the dead `curtiscompliance.com` URL. No code
+  behavior changes; the `license` subcommand still detects Pro and defers to
+  it when present.
+
 ## [1.3.0] — 2026-07-24
 
 ### Changed

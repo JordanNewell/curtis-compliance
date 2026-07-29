@@ -424,12 +424,9 @@ async function tryLoadPro(): Promise<{
 function printProAbsent(): void {
   console.log('Curtis Compliance core is MIT-licensed and free. Pro features');
   console.log('(hosted GitHub App, multi-repo audit rollup, PDF export, custom');
-  console.log('frameworks) ship as a separate package.');
+  console.log('frameworks) are in development and not yet available.');
   console.log('');
-  console.log('  npm install -g @jordannewell/curtis-compliance-pro');
-  console.log('  curtis-compliance-pro activate <key>');
-  console.log('');
-  console.log('Get a Pro license: https://curtiscompliance.com/pro');
+  console.log('  Track progress: https://github.com/JordanNewell/curtis-compliance-pro');
 }
 
 /**
