@@ -21,23 +21,33 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#0A0A0A">
   <style>
+    @font-face {
+      font-family: "Newell";
+      src: url("https://jordannewell.github.io/newell-typeface/releases/Newell-Regular.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
-      --bg:           #000000;
-      --bg-elevated:  #0a0a0a;
-      --bg-panel:     #0d0d0d;
-      --green:        #00FF00;
-      --green-soft:   rgba(0, 255, 0, 0.06);
-      --green-line:   rgba(0, 255, 0, 0.25);
-      --text:         #e8e8e8;
-      --text-dim:     #a0a0a0;
-      --muted:        #5a5a5a;
-      --rule:         #1a1a1a;
+      --bg:           #0A0A0A;
+      --bg-elevated:  #0F0F0F;
+      --bg-panel:     #0F0F0F;
+      --green:        #00FF41;
+      --accent:       #1AFF72;
+      --green-soft:   rgba(0, 255, 65, 0.06);
+      --green-line:   rgba(0, 255, 65, 0.25);
+      --text:         #FFFFFF;
+      --text-dim:     #A0A0A0;
+      --muted:        #A0A0A0;
+      --rule:         #1F1F1F;
       --red:          #ff5555;
       --amber:        #ffb86c;
       --sans:         system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      --mono:         ui-monospace, "SF Mono", Menlo, Consolas, "Courier New", monospace;
+      --mono:         "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, "Courier New", monospace;
+      --display:      "Newell", "JetBrains Mono", ui-monospace, monospace;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -80,8 +90,7 @@
       text-transform: uppercase;
       position: sticky;
       top: 0;
-      background: rgba(0,0,0,0.92);
-      backdrop-filter: blur(8px);
+      background: var(--bg);
       border-bottom: 1px solid var(--rule);
       z-index: 100;
     }
@@ -102,7 +111,6 @@
       height: 8px;
       border-radius: 50%;
       background: var(--green);
-      box-shadow: 0 0 8px var(--green);
       animation: pulse 2.4s ease-in-out infinite;
     }
     @keyframes pulse {
@@ -139,15 +147,14 @@
     .hero .eyebrow .accent { color: var(--green); }
 
     .hero h1 {
-      font-family: var(--mono);
-      font-weight: 700;
+      font-family: var(--display);
+      font-weight: 400;
       color: var(--green);
       font-size: clamp(2.5rem, 9vw, 7rem);
       line-height: 0.95;
-      letter-spacing: -0.02em;
+      letter-spacing: 0.02em;
       margin-bottom: 2rem;
-      text-shadow: 0 0 60px rgba(0, 255, 0, 0.18);
-      text-transform: lowercase;
+      text-transform: uppercase;
     }
     .hero h1 .sub {
       display: block;
@@ -534,11 +541,11 @@
         background: var(--bg);
         border: 1px solid var(--rule);
         border-top: none;
+        border-right: 2px solid var(--green);
         flex-direction: column;
         gap: 0;
         min-width: 220px;
         z-index: 50;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.6);
       }
       .topbar nav.open { display: flex; }
       .topbar nav a {
@@ -576,7 +583,7 @@
     <div class="eyebrow">open-source <span class="accent">fintech compliance</span> &nbsp;·&nbsp; v1.3.0</div>
 
     <h1>
-      curtis compliance
+      CURTIS COMPLIANCE
       <span class="sub">Block the commit. Cite the clause.</span>
     </h1>
 
