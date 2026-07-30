@@ -148,6 +148,7 @@
     .hero-grid .hero-content .meta { justify-content: flex-start; }
 
     .hero-terminal {
+      position: relative;
       background: var(--bg-panel);
       border: 1px solid var(--rule);
       border-radius: 4px;
@@ -158,6 +159,38 @@
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
                   0 0 80px rgba(0, 255, 65, 0.05);
+    }
+    .hero-terminal .live-badge {
+      position: absolute;
+      top: -14px;
+      right: 16px;
+      z-index: 2;
+      background: var(--bg);
+      color: var(--green);
+      border: 1px solid var(--green);
+      border-radius: 2px;
+      padding: 0.3rem 0.7rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      pointer-events: none;
+    }
+    .hero-terminal .live-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-terminal .live-badge::before { animation: none; }
     }
     .hero-terminal .bar {
       background: #111;
@@ -234,10 +267,11 @@
       color: var(--text);
       opacity: 0.5;
       font-weight: 400;
-      font-size: 0.45em;
-      letter-spacing: 0.18em;
+      font-size: 0.4em;
+      letter-spacing: 0.12em;
+      line-height: 1.4;
       text-transform: uppercase;
-      margin-top: 0.8rem;
+      margin-top: 1.4rem;
     }
 
     .hero .tagline {
@@ -686,6 +720,7 @@
       </div>
 
       <div class="hero-terminal" aria-label="Terminal demo">
+        <span class="live-badge">Live Demo</span>
         <div class="bar">
           <div class="dots"><span></span><span></span><span></span></div>
           <span>curtis-test — bash</span>
