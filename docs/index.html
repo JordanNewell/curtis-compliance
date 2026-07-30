@@ -121,11 +121,80 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 6rem 2rem 4rem;
+      padding: 5rem 2rem 4rem;
       max-width: 1400px;
       margin: 0 auto;
       width: 100%;
       position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .hero-grid .hero-content {
+      text-align: left;
+      min-width: 0;
+    }
+
+    .hero-grid .hero-content .eyebrow { margin-bottom: 1.5rem; }
+    .hero-grid .hero-content .tagline { margin-bottom: 2rem; }
+    .hero-grid .hero-content .cta-row { justify-content: flex-start; }
+    .hero-grid .hero-content .meta { justify-content: flex-start; }
+
+    .hero-terminal {
+      background: var(--bg-panel);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: var(--text);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                  0 0 80px rgba(0, 255, 65, 0.05);
+    }
+    .hero-terminal .bar {
+      background: #111;
+      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-terminal .bar .dots { display: flex; gap: 0.4rem; margin-right: 0.6rem; }
+    .hero-terminal .bar .dots span {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #2a2a2a;
+    }
+    .hero-terminal .body {
+      padding: 1.3rem 1.5rem;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .hero-terminal .body .prompt { color: var(--green); user-select: none; }
+    .hero-terminal .body .ok { color: var(--green); }
+    .hero-terminal .body .err { color: var(--red); }
+    .hero-terminal .body .dim { color: var(--muted); }
+    .hero-terminal .body .cite { color: var(--text-dim); }
+
+    @media (max-width: 880px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .hero-grid .hero-content { text-align: center; }
+      .hero-grid .hero-content .cta-row { justify-content: center; }
+      .hero-grid .hero-content .meta { justify-content: center; }
     }
 
     .hero .eyebrow {
@@ -587,30 +656,53 @@
   </header>
 
   <main class="hero">
-    <div class="eyebrow">open-source <span class="accent">fintech compliance</span> &nbsp;·&nbsp; v1.3.0</div>
+    <div class="hero-grid">
 
-    <h1>
-      CURTIS COMPLIANCE
-      <span class="sub">Block the commit. Cite the clause.</span>
-    </h1>
+      <div class="hero-content">
+        <div class="eyebrow">open-source <span class="accent">fintech compliance</span> &nbsp;·&nbsp; v1.3.0</div>
 
-    <p class="tagline">
-      A <strong>static regulatory scanner</strong> for fintech code. Catches what
-      auditors care about — plaintext secrets, non-TLS calls, missing audit
-      logs, unencrypted sensitive data — at commit time, with the specific
-      <strong>HIPAA / SOC2 / PCI-DSS</strong> citation the commit would fail.
-    </p>
+        <h1>
+          CURTIS COMPLIANCE
+          <span class="sub">Block the commit. Cite the clause.</span>
+        </h1>
 
-    <div class="cta-row">
-      <a class="btn" href="https://www.npmjs.com/package/@jordannewell/curtis-compliance">npm install curtis-compliance</a>
-      <a class="btn btn--ghost" href="https://github.com/JordanNewell/curtis-compliance#readme">Read the README →</a>
-    </div>
+        <p class="tagline">
+          A <strong>static regulatory scanner</strong> for fintech code. Catches
+          plaintext secrets, non-TLS calls, missing audit logs — at commit time,
+          with the specific <strong>HIPAA / SOC2 / PCI-DSS</strong> clause the
+          commit would fail.
+        </p>
 
-    <div class="meta">
-      <span>License<strong>MIT</strong></span>
-      <span>Frameworks<strong>HIPAA · SOC2 · PCI-DSS</strong></span>
-      <span>Audit trail<strong>Hash-chained JSONL</strong></span>
-      <span>Patterns<strong>21 / 12 providers</strong></span>
+        <div class="cta-row">
+          <a class="btn" href="https://www.npmjs.com/package/@jordannewell/curtis-compliance">npm install curtis-compliance</a>
+          <a class="btn btn--ghost" href="https://github.com/JordanNewell/curtis-compliance#readme">Read the README →</a>
+        </div>
+
+        <div class="meta">
+          <span>License<strong>MIT</strong></span>
+          <span>Frameworks<strong>HIPAA · SOC2 · PCI-DSS</strong></span>
+          <span>Audit trail<strong>Hash-chained</strong></span>
+        </div>
+      </div>
+
+      <div class="hero-terminal" aria-label="Terminal demo">
+        <div class="bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span>curtis-test — bash</span>
+        </div>
+        <div class="body"><span class="prompt">$</span> npm install -g @jordannewell/curtis-compliance
+<span class="prompt">$</span> curtis-compliance init --framework pci-dss
+<span class="ok">✓ Initialized .curtis/compliance.yaml</span>
+
+<span class="prompt">$</span> echo "stripe_secret = 'sk_live_...'" > pay.ts
+<span class="prompt">$</span> git commit -m "feat: add stripe"
+
+<span class="err">❌ COMMIT BLOCKED</span>
+   <span class="err">no-secrets-in-code</span>
+   <span class="cite">→ pay.ts:1</span>
+   <span class="cite">→ PCI-DSS 3.4 — Render PAN unreadable.</span></div>
+      </div>
+
     </div>
   </main>
 
