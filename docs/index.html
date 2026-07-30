@@ -23,14 +23,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <meta name="theme-color" content="#0A0A0A">
   <style>
-    @font-face {
-      font-family: "Newell";
-      src: url("https://jordannewell.github.io/newell-typeface/releases/Newell-Regular.woff2") format("woff2");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
     :root {
       --bg:           #0A0A0A;
       --bg-elevated:  #0F0F0F;
@@ -47,7 +39,7 @@
       --amber:        #ffb86c;
       --sans:         system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       --mono:         "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, "Courier New", monospace;
-      --display:      "Newell", "JetBrains Mono", ui-monospace, monospace;
+      --display:      var(--mono);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
