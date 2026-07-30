@@ -150,11 +150,33 @@
     }
 
     .hero .brand-logo {
-      width: clamp(220px, 32vw, 380px);
+      width: clamp(120px, 14vw, 180px);
       height: auto;
-      margin-bottom: 2.5rem;
       display: block;
-      filter: drop-shadow(0 0 50px rgba(0, 255, 65, 0.22));
+      filter: drop-shadow(0 0 30px rgba(0, 255, 65, 0.18));
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 3.5rem;
+      align-items: center;
+      max-width: 1100px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .hero-grid .hero-content {
+      min-width: 0;
+    }
+
+    @media (max-width: 720px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        justify-items: center;
+        text-align: center;
+      }
     }
     .hero h1 .sub {
       display: block;
@@ -580,32 +602,36 @@
   </header>
 
   <main class="hero">
-    <div class="eyebrow">open-source <span class="accent">fintech compliance</span> &nbsp;·&nbsp; v1.3.0</div>
+    <div class="hero-grid">
+      <img class="brand-logo" src="logo.png" alt="Curtis Compliance">
 
-    <img class="brand-logo" src="logo.png" alt="Curtis Compliance">
+      <div class="hero-content">
+        <div class="eyebrow">open-source <span class="accent">fintech compliance</span> &nbsp;·&nbsp; v1.3.0</div>
 
-    <h1>
-      CURTIS COMPLIANCE
-      <span class="sub">Block the commit. Cite the clause.</span>
-    </h1>
+        <h1>
+          CURTIS COMPLIANCE
+          <span class="sub">Block the commit. Cite the clause.</span>
+        </h1>
 
-    <p class="tagline">
-      A <strong>static regulatory scanner</strong> for fintech code. Catches what
-      auditors care about — plaintext secrets, non-TLS calls, missing audit
-      logs, unencrypted sensitive data — at commit time, with the specific
-      <strong>HIPAA / SOC2 / PCI-DSS</strong> citation the commit would fail.
-    </p>
+        <p class="tagline">
+          A <strong>static regulatory scanner</strong> for fintech code. Catches what
+          auditors care about — plaintext secrets, non-TLS calls, missing audit
+          logs, unencrypted sensitive data — at commit time, with the specific
+          <strong>HIPAA / SOC2 / PCI-DSS</strong> citation the commit would fail.
+        </p>
 
-    <div class="cta-row">
-      <a class="btn" href="https://www.npmjs.com/package/@jordannewell/curtis-compliance">npm install curtis-compliance</a>
-      <a class="btn btn--ghost" href="https://github.com/JordanNewell/curtis-compliance#readme">Read the README →</a>
-    </div>
+        <div class="cta-row">
+          <a class="btn" href="https://www.npmjs.com/package/@jordannewell/curtis-compliance">npm install curtis-compliance</a>
+          <a class="btn btn--ghost" href="https://github.com/JordanNewell/curtis-compliance#readme">Read the README →</a>
+        </div>
 
-    <div class="meta">
-      <span>License<strong>MIT</strong></span>
-      <span>Frameworks<strong>HIPAA · SOC2 · PCI-DSS</strong></span>
-      <span>Audit trail<strong>Hash-chained JSONL</strong></span>
-      <span>Patterns<strong>21 / 12 providers</strong></span>
+        <div class="meta">
+          <span>License<strong>MIT</strong></span>
+          <span>Frameworks<strong>HIPAA · SOC2 · PCI-DSS</strong></span>
+          <span>Audit trail<strong>Hash-chained JSONL</strong></span>
+          <span>Patterns<strong>21 / 12 providers</strong></span>
+        </div>
+      </div>
     </div>
   </main>
 
