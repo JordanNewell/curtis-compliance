@@ -998,91 +998,58 @@
     })();
   </script>
 
-<!--
-  NEWELL Universal Footer — drop-in component.
-  Paste before </body> on any page. Self-contained: inline CSS + SVG, no deps.
--->
-<footer class="newell-footer">
-  <a href="https://jordannewell.com" class="newell-footer-link" aria-label="A NEWELL project — visit jordannewell.com" title="A NEWELL project">
-    <svg class="newell-footer-mark" viewBox="0 0 48 48" width="24" height="24" aria-hidden="true">
-      <rect x="2" y="2" width="44" height="44" rx="6" fill="#0A0A0A" stroke="#00FF41" stroke-width="1.5"/>
-      <rect x="6" y="6" width="36" height="36" rx="3" fill="#0A0A0A" stroke="#1F1F1F" stroke-width="0.5"/>
-      <path d="M 14 14 L 14 34 L 17 34 L 17 19 L 14 16 Z" fill="#FFFFFF"/>
-      <path d="M 31 34 L 31 31 L 17 14 L 14 14 L 14 17 L 28 34 Z" fill="#FFFFFF"/>
-      <path d="M 34 14 L 31 14 L 31 31 L 34 28 L 34 14 Z" fill="#FFFFFF"/>
-    </svg>
-    <span class="newell-footer-text">
-      <span class="newell-footer-project">A NEWELL project</span>
-      <span class="newell-footer-sep">·</span>
-      <span class="newell-footer-credit">Built by Jordan Newell</span>
-    </span>
-  </a>
+<footer class="newell-site-footer">
+  <div class="nsf-inner">
+    <div class="nsf-brand">
+      <svg class="nsf-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true">
+        <rect x="2" y="2" width="44" height="44" rx="6" fill="#0A0A0A" stroke="#00FF41" stroke-width="1.5"/>
+        <rect x="6" y="6" width="36" height="36" rx="3" fill="#0A0A0A" stroke="#1F1F1F" stroke-width="0.5"/>
+        <path d="M 14 14 L 14 34 L 17 34 L 17 19 L 14 16 Z" fill="#FFFFFF"/>
+        <path d="M 31 34 L 31 31 L 17 14 L 14 14 L 14 17 L 28 34 Z" fill="#FFFFFF"/>
+        <path d="M 34 14 L 31 14 L 31 31 L 34 28 L 34 14 Z" fill="#FFFFFF"/>
+      </svg>
+      <div class="nsf-brand-text">
+        <a href="https://jordannewell.com" class="nsf-brand-link">A NEWELL project</a>
+        <span class="nsf-sep">·</span>
+        <span class="nsf-product">curtis-compliance</span>
+      </div>
+    </div>
+    <div class="nsf-row nsf-links"><a href="https://github.com/JordanNewell/curtis-compliance">github</a> <span class="nsf-sep">·</span> <a href="https://www.npmjs.com/package/@jordannewell/curtis-compliance">npm</a> <span class="nsf-sep">·</span> <a href="https://github.com/JordanNewell/curtis-compliance#readme">readme</a> <span class="nsf-sep">·</span> <a href="https://github.com/JordanNewell/curtis-compliance/blob/master/CHANGELOG.md">changelog</a> <span class="nsf-sep">·</span> <a href="https://github.com/JordanNewell/curtis-compliance/security/policy">security</a></div>
+    <div class="nsf-row nsf-meta"><span>MIT</span> <span class="nsf-sep">·</span> <span>v1.3.0</span> <span class="nsf-sep">·</span> <span>node >= 20</span> <span class="nsf-sep">·</span> <span>HIPAA · SOC2 · PCI-DSS</span></div>
+    <div class="nsf-row nsf-legal">Curtis is a trademark of Jordan Newell · Static scanner — not legal advice</div>
+    <div class="nsf-row nsf-social">
+      <a href="https://github.com/JordanNewell" aria-label="GitHub" title="GitHub">github</a>
+      <span class="nsf-sep">·</span>
+      <a href="https://github.com/sponsors/JordanNewell" aria-label="Sponsor" title="Sponsor on GitHub">sponsor</a>
+      <span class="nsf-sep">·</span>
+      <a href="https://buymeacoffee.com/jordannewell" aria-label="Buy me a coffee" title="Buy me a coffee">coffee →</a>
+    </div>
+  </div>
 </footer>
-
 <style>
-  .newell-footer {
-    border-top: 1px solid #1F1F1F;
-    background: #0A0A0A;
-    padding: 14px 24px;
-    font-family: "JetBrains Mono", "SF Mono", Menlo, monospace;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    color: #A0A0A0;
-    margin-top: auto;
-  }
-  .newell-footer-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: inherit;
-    max-width: 1200px;
-    margin: 0 auto;
-    transition: color 0.15s ease;
-  }
-  .newell-footer-link:hover {
-    color: #00FF41;
-  }
-  .newell-footer-mark {
-    flex-shrink: 0;
-    display: block;
-  }
-  .newell-footer-text {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .newell-footer-project {
-    color: #FFFFFF;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-size: 11px;
-  }
-  .newell-footer-sep {
-    color: #1F1F1F;
-  }
-  .newell-footer-credit {
-    color: #A0A0A0;
-  }
-  .newell-footer-link:hover .newell-footer-project {
-    color: #00FF41;
-  }
-  @media (max-width: 600px) {
-    .newell-footer {
-      padding: 12px 16px;
-      font-size: 11px;
-    }
-    .newell-footer-link {
-      gap: 8px;
-    }
-    .newell-footer-mark {
-      width: 20px;
-      height: 20px;
-    }
-  }
+.newell-site-footer { border-top: 1px solid #1F1F1F; background: #0A0A0A; padding: 24px; font-family: "JetBrains Mono", "SF Mono", Menlo, monospace; font-size: 12px; color: #A0A0A0; }
+.nsf-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+.nsf-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+.nsf-mark { flex-shrink: 0; display: block; }
+.nsf-brand-text { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.nsf-brand-link { color: #FFFFFF; text-decoration: none; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; transition: color 0.15s ease; }
+.nsf-brand-link:hover { color: #00FF41; }
+.nsf-product { color: #00FF41; font-weight: 500; }
+.nsf-sep { color: #1F1F1F; }
+.nsf-row { padding-left: 40px; }
+.nsf-links a, .nsf-meta span, .nsf-legal { color: #A0A0A0; }
+.nsf-links a { text-decoration: none; transition: color 0.15s ease; }
+.nsf-links a:hover { color: #00FF41; }
+.nsf-meta span { color: #707070; }
+.nsf-legal { color: #707070; font-size: 11px; line-height: 1.5; }
+.nsf-social { padding-left: 40px; margin-top: 4px; }
+.nsf-social a { color: #A0A0A0; text-decoration: none; transition: color 0.15s ease; }
+.nsf-social a:hover { color: #00FF41; }
+@media (max-width: 600px) {
+  .newell-site-footer { padding: 16px; font-size: 11px; }
+  .nsf-row, .nsf-social { padding-left: 0; }
+  .nsf-brand { margin-bottom: 4px; }
+}
 </style>
-
 </body>
 </html>
