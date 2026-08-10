@@ -1,0 +1,56 @@
+name: Dependabot Auto-Merge
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    # Only run on dependabot PRs
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Wait for CI checks
+        id: wait
+        uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          check-name: 'test'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+
+      - name: Approve and merge
+        if: steps.wait.outputs.exit-code == '0'
+        run: |
+          # Only auto-merge patch and minor updates (semver-safe)
+          UPDATE_TYPE="${{ steps.metadata.outputs.update-type }}"
+          echo "Update type: $UPDATE_TYPE"
+
+          case "$UPDATE_TYPE" in
+            version-update:semver-patch|version-update:semver-minor)
+              echo "Safe update — approving and merging"
+              gh pr review --approve "$PR_URL" --body "Auto-approved: $UPDATE_TYPE"
+              gh pr merge --squash --auto "$PR_URL"
+              ;;
+            version-update:semver-major)
+              echo "Major version bump — requires manual review"
+              ;;
+            *)
+              echo "Non-semver update (likely actions/gomod) — auto-merging if CI passes"
+              gh pr review --approve "$PR_URL" --body "Auto-approved: CI-only dependency update"
+              gh pr merge --squash --auto "$PR_URL"
+              ;;
+          esac
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
