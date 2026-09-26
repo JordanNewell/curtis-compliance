@@ -1,47 +1,60 @@
 # Security Policy
 
-## Supported versions
+## Reporting a Vulnerability
 
-Only the latest minor release receives security updates. Pin to the most
-recent tag for production use.
+**Do not open a public GitHub issue for a security vulnerability.**
 
-| Version | Supported |
-| ------- | --------- |
-| 1.2.x   | ✅        |
-| < 1.2   | ❌        |
+Report vulnerabilities privately to **<security@jordannewell.com>**.
+(Placeholder address — Jordan will replace with a dedicated security inbox.)
 
-## Reporting a vulnerability
+If you have a PGP key, encrypt the report. The fingerprint of the project's
+reporting key will be published here once Jordan generates it:
 
-Email **security@jordannewell.com** with:
+```
+PGP fingerprint:  TBD (to be published)
+PGP public key:   TBD (to be published)
+```
 
-- A description of the issue and its impact
-- Reproduction steps (a minimal example is ideal)
-- Affected version — run `curtis-compliance --version`
+Until the PGP key is published, plaintext email is fine — but please prefer
+it over GitHub issues either way.
 
-**Do not open a public GitHub issue** for security reports.
+Please include, where possible:
 
-## Response timeline
+- A description of the issue and its impact.
+- The smallest reproducer you can manage (a failing test is ideal).
+- Affected versions (or the commit SHA you tested against).
+- Any mitigations you've already tried.
 
-- **Acknowledgment:** within 72 hours
-- **Initial assessment:** within 5 business days
-- **Fix or mitigation:** target 30 days for high-severity issues
+## Response SLA
 
-Please refrain from public disclosure until a fix has been published, to
-protect downstream users. Reporters will be credited in the release notes
-unless they prefer otherwise.
+- **Acknowledgement:** within **48 hours** (typically same business day).
+- **Initial assessment + severity rating:** within **5 business days**.
+- **Fix or mitigation timeline** depends on severity:
+  - *Critical* (RCE, key compromise, auth bypass): patch or mitigation
+    within 7 days of confirmation; coordinated disclosure afterwards.
+  - *High*: patch within 30 days.
+  - *Medium / Low:* next minor release.
+
+We will keep you informed at each step and credit you in the release notes
+unless you'd prefer to remain anonymous.
 
 ## Scope
 
 **In scope:**
 
-- The CLI itself (`curtis-compliance` and its subcommands)
-- The hash-chained audit-trail implementation
-- The rule engine and bundled rule packs
-- The PR-review GitHub integration
+- The `curtis-compliance` application, its API surface, and data handling layers.
+- Anything that could leak or tamper with compliance data.
 
 **Out of scope:**
 
-- Findings in dependencies — report upstream
-- Findings in code that curtis-compliance scans — it is a static analyzer,
-  not a runtime guard, and is not expected to catch every issue
-- Social engineering, physical attacks, or Denial of Service
+- Vulnerabilities in third-party dependencies. Report those upstream.
+- Attacks requiring a compromised maintainer, a compromised signing key, or
+  physical access to the reporter's machine.
+- Reports from automated scanners without a working reproducer.
+
+## Disclosure policy
+
+We follow **coordinated disclosure**. Once a fix is available we'll publish a
+GitHub Security Advisory, request a CVE if appropriate, cut a patch release,
+and credit the reporter in the changelog. We will not publish details of
+unpatched critical issues.
