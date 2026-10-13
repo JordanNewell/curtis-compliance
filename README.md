@@ -68,7 +68,7 @@ graph LR
     G -->|No| H[Comment Fixes]
     G -->|Yes| I[Merge]
     I --> J[Hash-chained Audit Event Appended]
-    J --> K[.curtis/audit/YYYY/MM/DD.jsonl]
+    J --> K[.curtis/audit/YYYY/MM/YYYY-MM-DD.jsonl]
 ```
 
 Every check produces a tamper-evident event — see
@@ -299,7 +299,7 @@ npx @jordannewell/curtis-compliance init --framework pci-dss
 
 ## Roadmap
 
-**Shipped (MIT core):**
+**Shipped (core):**
 - [x] Pre-commit gate with framework-aware citations
 - [x] Hash-chained audit trail with tamper evidence
 - [x] CSV / JSON evidence export
@@ -320,9 +320,9 @@ npx @jordannewell/curtis-compliance init --framework pci-dss
 - [ ] AWS / Azure / GCP policy checks
 - [ ] Compression of audit files older than 30 days
 
-The **MIT core** is free forever. The hosted tier is tracked at
-[JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro)
-— star that repo if you want a ping when it ships.
+The **core** is free for personal and noncommercial use under BUSL-1.1
+(converts to MIT on the Change Date, 2030-10-12). A hosted Pro tier is planned
+as part of the Curtis suite — not shipping yet.
 
 ## Common misconceptions
 
@@ -337,9 +337,9 @@ A few things to head off confusion, including from older drafts of this README:
 - **No `curtis.ai` website.** That domain belongs to an unrelated party.
   This project lives at
   [github.com/JordanNewell/curtis-compliance](https://github.com/JordanNewell/curtis-compliance).
-- **No paid tier yet.** The MIT core is the only thing shipping today. Older
-  READMEs mentioned a Pro tier; the Pro package is in development at
-  [JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro)
+- **No paid tier yet.** The core is the only thing shipping today. Older
+  READMEs mentioned a standalone Pro tier; that roadmap is folding into the
+  Curtis suite
   but nothing is for sale and no npm package exists to install.
 
 ## Development
@@ -375,7 +375,7 @@ See [LICENSE](LICENSE) for the full warranty disclaimer.
 
 ## License
 
-[MIT](LICENSE) © Jordan Newell
+[BUSL-1.1](LICENSE) © Jordan Newell — converts to MIT 2030-10-12
 
 ## Contributing
 
@@ -396,18 +396,18 @@ Custom frameworks, PDF export, and the hosted App are tracked at
 
 ## Support This Project
 
-The **core** is MIT-licensed and free. There is no paid tier to buy yet —
-the hosted Pro package is in development at
-[JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro).
-Star that repo if you want a ping when it lands.
+The **core** is source-available under BUSL-1.1 — free for personal and
+noncommercial use, including production. Commercial use requires a written
+license from the author. On the Change Date (2030-10-12) it converts to MIT.
+A hosted Pro tier is planned as part of the Curtis suite — not shipping yet.
 
-For the open-source core itself, sponsorship is welcome and voluntary:
+Sponsorship is welcome and voluntary:
 
 - [Buy me a coffee](https://www.buymeacoffee.com/jordannewell)
 - [Sponsor on GitHub](https://github.com/sponsors/JordanNewell)
 
 Neither unlocks core features — everything in this repo is already available
-to everyone under MIT.
+to everyone under the terms of LICENSE.
 
 
 <p align="right">

@@ -3,6 +3,19 @@
 All notable changes to Curtis Compliance are documented here.
 This project follows [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- **Relicensed from MIT to BUSL-1.1** as part of the fleet-wide Curtis-suite
+  license consolidation. The LICENSE file is now the full BUSL-1.1 text with
+  Licensor Jordan Newell, Change Date 2030-10-12, Change License MIT — free
+  for personal and noncommercial use (including production); commercial use
+  requires a written license. `package.json` `license` field updated; BUSL
+  SPDX headers added to all `src/` and `tests/` files. README, landing page,
+  and asset badges updated to match. Historical entries below describe
+  releases that shipped under MIT at the time and are left as written.
+
 ## [1.3.1] — 2026-07-29
 
 ### Changed

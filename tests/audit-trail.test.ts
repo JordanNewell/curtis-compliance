@@ -1,3 +1,11 @@
+/*
+ * Curtis Compliance — Copyright © 2026 Jordan Newell. All rights reserved.
+ * SPDX-License-Identifier: BUSL-1.1
+ * Noncommercial production use permitted; commercial use requires a written
+ * license from the author. This license converts to MIT at the Change Date —
+ * full terms in LICENSE (https://mariadb.com/bsl11/).
+ */
+
 import { mkdtemp, mkdir, rm, readFile, writeFile } from 'fs/promises';
 import { tmpdir } from 'os';
 import { join } from 'path';
