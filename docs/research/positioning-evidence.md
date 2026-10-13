@@ -296,3 +296,149 @@ research-instructions.md.
 5. **EU AI Act / DORA / SEC Reg S-K — are there 2026-2027 regulatory
    deadlines that create *new* acute developer-side pressure?** PCI 4.0 is
    the current hook; the next one is the growth lever.
+
+---
+
+## Re-verification — 2026-10-06 (agent: ZCode session, ResearchRabbit method)
+
+Scope: competitor watch (claims 3+4), regulatory refresh (§7), a new
+pricing anchor (§3 extension), the stealth-competitor hunt (§8.1), and a
+traction baseline. Method note: academic prior-art checked via Semantic
+Scholar citation networks (forward citations of the tamper-evident-logging
+canon), not just keyword search.
+
+### Claim 3 — Vanta/Drata/Secureframe still org-level — CONFIRMED
+
+**Was:** "They collect evidence; they don't generate it at commit time."
+**Now:** unchanged.
+**Evidence:** Oct 2026 roundup content describes all three as
+integration-driven *collection* platforms (cloud, identity, endpoint, HR,
+CI/CD). No pre-commit or commit-time product surfaced. Independent
+commentary now explicitly names the opening: an "evidence gap" that
+"developer-native tools might fill" (Dreamit, Dec 2025) — third parties
+are pointing at our wedge.
+**Sources:**
+- [Continuous Compliance Should Be a Revenue Strategy — dreamit.com](https://dreamit.com) (accessed 2026-10-06)
+- [Best SOC 2 Compliance Software in 2026 — envmanager.com](https://envmanager.com) (accessed 2026-10-06)
+**Confidence:** MEDIUM (no product-page-level confirmation this cycle; no contrary signal either).
+**Action needed:** none.
+
+### Claim 4 — no direct competitor (pre-commit + hash-chained audit trail) — CONFIRMED, STRENGTHENED
+
+**Was:** gap confirmed via web/GitHub/arXiv/HN search on 2026-07-24.
+**Now:** unchanged — and now anchored in the academic citation graph.
+**Evidence:** Two channels.
+(1) *Keyword:* Semantic Scholar query "pre-commit hook regulatory
+compliance checking" returns software-engineering irrelevancies (IoT
+intrusion detection, construction-plan compliance, PFAS water testing);
+the only dev-loop neighbor is "Leveraging pre-commit hooks for
+context-sensitive checklists" (2015, 3 citations) — checklists, not
+cited-regulatory gating, no audit chain.
+(2) *Citation network:* forward citations of Crosby & Wallach's
+"Efficient Data Structures for Tamper-Evident Logging" (USENIX Security
+2009, 248 citations) — the canonical hash-chain-log paper — are
+dominated by 2026 papers applying tamper-evident logging to **AI agent
+runs** (Agent Flight Recorder, Tracekit, NovaFabric, A2A-ForensicTrace,
+TrajMark, Janus, Hearsay, ClaimReceipt). None operate at the pre-commit
+layer for software regulatory compliance. The lineage anchors we should
+cite in technical credibility contexts: Schneier & Kelsey, "Secure audit
+logs to support computer forensics" (ACM TOPS, 1999, 519 citations) and
+Crosby & Wallach 2009.
+Commercial stealth check: nothing found for pre-commit + cited-evidence +
+audit-trail GitHub Apps; nearest adjacency is commit-timestamping
+authorship services (timestampgit.dev, Sep 2026) — provenance camp, not
+compliance gating.
+**Sources:**
+- [Semantic Scholar — Crosby & Wallach 2009 + forward citations](https://www.semanticscholar.org/search?q=Efficient%20Data%20Structures%20For%20Tamper-Evident%20Logging) (accessed 2026-10-06)
+- [Semantic Scholar — Schneier & Kelsey 1999](https://www.semanticscholar.org/search?q=Secure%20audit%20logs%20to%20support%20computer%20forensics) (accessed 2026-10-06)
+- [timestampgit.dev — commit-timestamp authorship evidence](https://timestampgit.dev) (accessed 2026-10-06)
+**Confidence:** MEDIUM-HIGH.
+**Action needed:** none. Re-verify quarterly as scheduled.
+
+### NEW — §7 refresh: the live and next regulatory hooks (supersedes the "DORA 2025/2027?" framing)
+
+**Was:** PCI DSS 4.0 (Mar 2025) was the only dated hook; EU AI Act / DORA
+listed as open questions.
+**Now:** three dated developer-side hooks, in force or scheduled:
+
+| Regulation | Status | Developer-side obligation |
+|---|---|---|
+| **EU AI Act, Arts 11–12** | Live since **2026-08-02** | Technical documentation (Annex IV) + automatically generated logs, ≥6-month retention, for high-risk AI systems — fintech credit-scoring/insurance ML is in scope |
+| **EU Cyber Resilience Act (CRA)** | Reporting live **2026-09-11**; full application **2027-12-11** | Product-level secure-development, vulnerability-handling, and incident-reporting duties for software placed on the EU market — the most developer-side regulation in this list |
+| **DORA** | **In force since 2025-01-17** (correction — not upcoming) | ICT log-retention + incident logging RTS for EU financial entities; Art 28 pushes obligations onto fintechs' software suppliers |
+
+PCI DSS 4.0 remains the US payments hook; CRA is the next big one to
+build outreach around (15 months of runway to Dec 2027 full application).
+**Sources:**
+- [EU AI Act 2026 Updates — legalnodes.com](https://legalnodes.com) (accessed 2026-10-06)
+- [EU AI Act Article 12 record-keeping — truescreen.io](https://truescreen.io) (accessed 2026-10-06)
+- [Cyber Resilience Act — European Commission](https://digital-strategy.ec.europa.eu) (accessed 2026-10-06)
+- [DORA — EIOPA](https://www.eiopa.europa.eu) (accessed 2026-10-06)
+**Confidence:** HIGH on dates (Commission + multiple concordant secondary sources).
+**Action needed:** research-instructions.md regulatory-watch queries corrected to track CRA/AI Act as the live hooks.
+
+### NEW — §3 extension: the missing business-model analog and pricing anchor (Semgrep)
+
+**Was:** pricing anchored only against org-level GRC (Vanta/Drata/
+Secureframe, $5K–100K+/yr). $19/seat/mo flagged as possibly too cheap;
+$39–49 suggested; undecided.
+**Now:** the closest company running Curtis's exact playbook — free
+dev-loop scanner → per-seat platform — is **Semgrep**: OSS engine as top
+of funnel, free tier capped at 10 contributors, then **$30/contributor/
+month per product** (Code / Supply Chain / Secrets each ~$30), enterprise
+custom; estimated ~$33.6M ARR (2025, GetLatka estimate). Transparent
+linear per-developer pricing is positioned *as a differentiator* against
+opaque enterprise quotes. GitGuardian (already documented in §6) runs the
+same shape: free ≤25 devs → Business ~$15–40K/yr.
+**Implication:** market rate for dev-loop security tooling is ~$30/dev/
+month. Curtis Pro at $19/seat is priced *below* the anchor for a tool
+with a compliance (not just security) budget line. Recommendation:
+**$29/seat/mo, $290/seat/yr** — at the Semgrep anchor, still ~90% under a
+Vanta entry contract, credible for B2B. Final call stays with Jordan and
+should be confirmed against A3 pricing interviews (see roadmap).
+**Sources:**
+- [Semgrep pricing — semgrep.dev](https://semgrep.dev) (accessed 2026-10-06)
+- [Semgrep ARR estimate (~$33.6M, 2025) — GetLatka via search](https://getlatka.com) (accessed 2026-10-06)
+**Confidence:** HIGH on Semgrep list price (public pricing page); MEDIUM on ARR (third-party estimate).
+**Action needed:** resolve the $19-vs-$49 question to $29 before Phase 5 landing page ships.
+
+### §8.1 — stealth-startup hunt — NO FINDING
+
+**Evidence:** web + GitHub Marketplace + academic searches on 2026-10-06
+(found nothing; queries logged above). Absence of evidence only.
+**Confidence:** n/a. **Action needed:** none; fold into monthly competitor
+watch.
+
+### NEW — Strategic adjacency: tamper-evident evidence for AI agents
+
+**Evidence:** the 2026 research frontier in hash-chained audit logs has
+pivoted to *AI-agent run evidence* — see the Claim-4 citation list. EU AI
+Act Art 12 (live) requires automatic logging for high-risk AI systems.
+Curtis's audit-event schema (timestamped, hash-chained, verifiable) is
+directly portable to "evidence for agentic coding runs" — a potential
+Phase 6 with the same primitive and new citations (AI Act Art 12, ISO
+42001). Pursue only after auditor validation (Track A of the roadmap)
+confirms the audit-trail value prop.
+**Confidence:** MEDIUM (direction is clear; commercial timing unproven).
+**Action needed:** roadmap horizon item only — do not build yet.
+
+### NEW — Traction baseline (first time recorded)
+
+**Evidence:** npm registry API, accessed 2026-10-06 — **52 downloads in
+the last 30 days**; July 2026 spike of ~1,006 downloads over Jul 20–31
+(coinciding with launch/README push) decayed to ~1–7/day by September.
+GitHub: **2 stars, 0 forks, 8 open issues**. No telemetry exists — we
+cannot currently identify or count teams with Curtis installed in a real
+repo.
+**Confidence:** HIGH (registry data).
+**Action needed:** Track A2 of the roadmap — 5–10 interviews with July
+installers is the cheapest ICP research available; add an opt-in,
+privacy-published usage ping to the roadmap debate.
+
+### Updated open questions (§8 superseded in priority)
+
+1. ~~Stealth competitor~~ — checked 2026-10-06, nothing; recurring watch item.
+2. **Auditor acceptance — STILL OPEN, now the #1 blocker.** Gates Pro Phase 3 (rollup/PDF).
+3. **Willingness-to-pay — PARTIALLY ANSWERED** (Semgrep anchor $30/contributor/mo). Confirm via interviews; recommend $29.
+4. **"Complement to Vanta" resonance — STILL OPEN** — fold into A2 interviews.
+5. ~~Next regulatory hook~~ — ANSWERED: AI Act live, CRA Dec 2027 (see §7 refresh).

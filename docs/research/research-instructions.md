@@ -116,6 +116,14 @@ DORA digital operational resilience developer 2025
 SEC cybersecurity disclosure developer impact 2025
 ISO 27001:2022 migration developer
 ```
+
+> **Correction (2026-10-06, see positioning-evidence.md re-verification):**
+> DORA has been fully applicable since 2025-01-17 — track its RTS guidance,
+> not a deadline. The live/next hooks are: EU AI Act Arts 11–12 (live since
+> 2026-08-02 — technical docs + automatic logging, ≥6-month retention) and
+> the EU Cyber Resilience Act (reporting since 2026-09-11; full application
+> 2027-12-11 — the most developer-side regulation to watch). Add
+> `Cyber Resilience Act developer obligations` to the query list.
 Acceptance: a list of 2-3 regulatory deadlines in the next 18 months that
 create *acute developer-side* compliance pressure (not just org-level).
 PCI 4.0 is the current one; find the next.
