@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JordanNewell/curtis-compliance/master/assets/hero.png" alt="Curtis Compliance — Open-source compliance checks for fintech code" width="100%">
+  <img src="https://raw.githubusercontent.com/JordanNewell/curtis-compliance/master/assets/hero.png" alt="Curtis Compliance — Source-available compliance checks for fintech code" width="100%">
 </p>
 
 <p align="center">
