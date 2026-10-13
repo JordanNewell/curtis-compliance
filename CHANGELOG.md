@@ -3,7 +3,7 @@
 All notable changes to Curtis Compliance are documented here.
 This project follows [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.3.2] — 2026-10-13
 
 ### Changed
 
