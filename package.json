@@ -49,7 +49,7 @@
   ],
   "dependencies": {
     "commander": "^11.1.0",
-    "zod": "^3.22.4",
+    "zod": "^4.6.6",
     "glob": "^10.3.10",
     "js-yaml": "^4.1.0",
     "@octokit/rest": "^20.0.2"
