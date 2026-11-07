@@ -1,0 +1,28 @@
+# GitHub-side plan-doc guard (public repos can't use push rulesets —
+# Team/Enterprise + private-only per GitHub docs). Deploy via the
+# repo-standards sweep to all authored repos; wire as a required
+# status check on default branches.
+name: plan-doc-guard
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Block plan/roadmap docs
+        run: |
+          PAT='(^|/)(PLAN|ROADMAP|GAME-PLAN|MASTER-PLAN|GO-TO-MARKET|GTM)[^/]*\.md$|(^|/)docs/(superpowers/)?plans?/|(^|/)docs/roadmap/'
+          # full tree scan — catches history already on the branch, not just new files
+          HITS=$(git ls-tree -r --name-only HEAD | grep -iE "$PAT" || true)
+          if [ -n "$HITS" ]; then
+            echo "::error::Plan/roadmap docs are not allowed in repos. Move to the vault (10_PROJECTS/<slug>/plans/)."
+            echo "$HITS"
+            exit 1
+          fi
+          echo "✅ No plan/roadmap docs in tree."
