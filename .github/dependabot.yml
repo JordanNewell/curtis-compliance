@@ -6,6 +6,10 @@ updates:
       interval: "weekly"
       day: "monday"
     open-pull-requests-limit: 5
+    ignore:
+      # typescript >=6 violates typescript-eslint@8 peer range (<6.1.0)
+      - dependency-name: "typescript"
+        versions: [">=6"]
     commit-message:
       prefix: "chore(deps)"
       include: "scope"
