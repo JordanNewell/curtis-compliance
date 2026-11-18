@@ -435,7 +435,7 @@ function printProAbsent(): void {
   console.log('(hosted GitHub App, multi-repo audit rollup, PDF export, custom');
   console.log('frameworks) are in development and not yet available.');
   console.log('');
-  console.log('  Track progress: https://github.com/JordanNewell/curtis-compliance-pro');
+  console.log('  Track progress: https://github.com/curtis-ai-tech/curtis-compliance-pro');
 }
 
 /**

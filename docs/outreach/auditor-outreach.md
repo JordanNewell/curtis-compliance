@@ -120,7 +120,7 @@ gets named credit in the project's published research if you'd like.
 Either way — thanks for reading.
 
 Jordan Newell
-github.com/JordanNewell/curtis-compliance
+github.com/curtis-ai-tech/curtis-compliance
 ```
 
 **LinkedIn/DM short variant:**

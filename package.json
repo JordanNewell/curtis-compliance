@@ -27,13 +27,13 @@
   ],
   "author": "Jordan Newell (Curtis AI)",
   "license": "BUSL-1.1",
-  "homepage": "https://github.com/JordanNewell/curtis-compliance#readme",
+  "homepage": "https://github.com/curtis-ai-tech/curtis-compliance#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JordanNewell/curtis-compliance.git"
+    "url": "git+https://github.com/curtis-ai-tech/curtis-compliance.git"
   },
   "bugs": {
-    "url": "https://github.com/JordanNewell/curtis-compliance/issues"
+    "url": "https://github.com/curtis-ai-tech/curtis-compliance/issues"
   },
   "publishConfig": {
     "access": "public"
