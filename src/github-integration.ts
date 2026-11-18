@@ -21,7 +21,7 @@ import * as yaml from 'js-yaml';
  * App / dashboard (Phase 2/3) can point status-check links at itself without
  * a code change. Defaults to the GitHub repo until curtiscompliance.com ships.
  */
-const APP_URL = process.env.CURTIS_APP_URL ?? 'https://github.com/JordanNewell/curtis-compliance';
+const APP_URL = process.env.CURTIS_APP_URL ?? 'https://github.com/curtis-ai-tech/curtis-compliance';
 
 interface PRContext {
   owner: string;

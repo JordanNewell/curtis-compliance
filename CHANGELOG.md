@@ -27,7 +27,7 @@ This project follows [Semantic Versioning](https://semver.org/).
   subcommand printed install instructions for a package that isn't on npm yet.
   All three are corrected: Pro is now described as in development, links point
   at the public stub repo
-  ([JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro)),
+  ([curtis-ai-tech/curtis-compliance-pro](https://github.com/curtis-ai-tech/curtis-compliance-pro)),
   the landing-page CTA is removed, and `printProAbsent()` no longer prints
   install instructions or the dead `curtiscompliance.com` URL. No code
   behavior changes; the `license` subcommand still detects Pro and defers to
@@ -274,8 +274,8 @@ Initial release. CLI with `init` / `check` / `report` / `frameworks` / `selftest
 commands; five built-in compliance rules mapped to HIPAA, SOC2, and PCI-DSS;
 GitHub PR integration skeleton.
 
-[1.2.0]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.2.0
-[1.1.2]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.1.2
-[1.1.1]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.1.1
-[1.1.0]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.1.0
-[1.0.0]: https://github.com/JordanNewell/curtis-compliance/releases/tag/v1.0.0
+[1.2.0]: https://github.com/curtis-ai-tech/curtis-compliance/releases/tag/v1.2.0
+[1.1.2]: https://github.com/curtis-ai-tech/curtis-compliance/releases/tag/v1.1.2
+[1.1.1]: https://github.com/curtis-ai-tech/curtis-compliance/releases/tag/v1.1.1
+[1.1.0]: https://github.com/curtis-ai-tech/curtis-compliance/releases/tag/v1.1.0
+[1.0.0]: https://github.com/curtis-ai-tech/curtis-compliance/releases/tag/v1.0.0

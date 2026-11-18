@@ -9,7 +9,7 @@
 > non-compliant changes, cites the specific HIPAA/SOC2/PCI-DSS clause, and
 > writes every check to a tamper-evident, hash-chained JSONL audit trail. A
 > paid **Pro** tier adds a hosted GitHub App, multi-repo rollup, PDF export,
-> and custom frameworks. Repo: `github.com/JordanNewell/curtis-compliance`.
+> and custom frameworks. Repo: `github.com/curtis-ai-tech/curtis-compliance`.
 >
 > **The companion file:** `positioning-evidence.md` holds the current
 > evidence + claims. Read it first — your job is to *verify, extend, or

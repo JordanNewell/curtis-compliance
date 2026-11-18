@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JordanNewell/curtis-compliance/master/assets/hero.png" alt="Curtis Compliance — Source-available compliance checks for fintech code" width="100%">
+  <img src="https://raw.githubusercontent.com/curtis-ai-tech/curtis-compliance/master/assets/hero.png" alt="Curtis Compliance — Source-available compliance checks for fintech code" width="100%">
 </p>
 
 <p align="center">
-  <a href="https://github.com/JordanNewell/curtis-compliance/actions/workflows/ci.yml"><img src="https://github.com/JordanNewell/curtis-compliance/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/curtis-ai-tech/curtis-compliance/actions/workflows/ci.yml"><img src="https://github.com/curtis-ai-tech/curtis-compliance/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://www.npmjs.com/package/@jordannewell/curtis-compliance"><img src="https://img.shields.io/npm/v/@jordannewell/curtis-compliance.svg" alt="npm version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/npm/l/@jordannewell/curtis-compliance.svg" alt="license"></a>
-  <a href="https://github.com/JordanNewell/curtis-compliance/releases"><img src="https://img.shields.io/badge/release-1.3.2-blue" alt="latest release"></a>
+  <a href="https://github.com/curtis-ai-tech/curtis-compliance/releases"><img src="https://img.shields.io/badge/release-1.3.2-blue" alt="latest release"></a>
   <a href="https://jordannewell.github.io/curtis-compliance/"><img src="https://img.shields.io/badge/docs-landing%20page-00FF00?style=flat&logo=github&logoColor=white" alt="docs"></a>
 </p>
 
@@ -32,7 +32,7 @@ neighbors aren't really competitors, but the contrast is useful:
 |------|----------|------------------------------|
 | ESLint, Biome, Nx Conformance | Code-style / best-practice linters | Different category entirely. Those enforce style and engineering conventions. Curtis enforces regulatory requirements and cites the failing clause. |
 | Gitleaks, TruffleHog, GitGuardian | Secret scanners | Curtis uses similar detection (21 patterns across 12 providers) but wraps every finding in a compliance workflow — each is a cited audit failure, not just a regex hit. |
-| Vanta, Drata, Secureframe | Compliance automation platforms | Those manage org-wide posture and collect evidence for auditors. Curtis sits inside the developer loop, preventing violations at commit time before they ship — the thing that makes the controls those platforms attest to actually true in the code. A hosted Pro tier to feed Curtis's evidence into Vanta/Drata directly is on the roadmap at [JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro); not shipping yet. |
+| Vanta, Drata, Secureframe | Compliance automation platforms | Those manage org-wide posture and collect evidence for auditors. Curtis sits inside the developer loop, preventing violations at commit time before they ship — the thing that makes the controls those platforms attest to actually true in the code. A hosted Pro tier to feed Curtis's evidence into Vanta/Drata directly is on the roadmap at [curtis-ai-tech/curtis-compliance-pro](https://github.com/curtis-ai-tech/curtis-compliance-pro); not shipping yet. |
 
 If you already use Vanta or Drata, Curtis is the engineering-side complement —
 the thing that makes the controls those platforms attest to actually true in
@@ -77,7 +77,7 @@ Every check produces a tamper-evident event — see
 ## Quick Start
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JordanNewell/curtis-compliance/master/assets/terminal.png" alt="curtis-compliance in action — scanning a payment service against PCI-DSS, blocking a non-compliant commit with citations" width="100%">
+  <img src="https://raw.githubusercontent.com/curtis-ai-tech/curtis-compliance/master/assets/terminal.png" alt="curtis-compliance in action — scanning a payment service against PCI-DSS, blocking a non-compliant commit with citations" width="100%">
 </p>
 
 ### See it work in 60 seconds
@@ -307,7 +307,7 @@ npx @jordannewell/curtis-compliance init --framework pci-dss
 - [x] Per-rule enable/disable via `.curtis/compliance.yaml`
 - [x] Secret detection across 12 providers
 
-**Future: hosted tier (paid, in development — see [JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro)):**
+**Future: hosted tier (paid, in development — see [curtis-ai-tech/curtis-compliance-pro](https://github.com/curtis-ai-tech/curtis-compliance-pro)):**
 - [ ] Hosted GitHub App for automatic PR reviews without PAT setup
 - [ ] Multi-repo audit rollup (org-level evidence view)
 - [ ] PDF report export (auditor-ready, signed)
@@ -330,13 +330,13 @@ A few things to head off confusion, including from older drafts of this README:
 
 - **No hosted GitHub App.** The `review:pr` CLI with a PAT is the only
   PR-review path. A hosted App is on the roadmap at
-  [JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro);
+  [curtis-ai-tech/curtis-compliance-pro](https://github.com/curtis-ai-tech/curtis-compliance-pro);
   not shipping yet.
 - **No Docker image.** `docker run curtis/compliance` does nothing — there's
   no image published.
 - **No `curtis.ai` website.** That domain belongs to an unrelated party.
   This project lives at
-  [github.com/JordanNewell/curtis-compliance](https://github.com/JordanNewell/curtis-compliance).
+  [github.com/curtis-ai-tech/curtis-compliance](https://github.com/curtis-ai-tech/curtis-compliance).
 - **No paid tier yet.** The core is the only thing shipping today. Older
   READMEs mentioned a standalone Pro tier; that roadmap is folding into the
   Curtis suite
@@ -345,7 +345,7 @@ A few things to head off confusion, including from older drafts of this README:
 ## Development
 
 ```bash
-git clone https://github.com/JordanNewell/curtis-compliance.git
+git clone https://github.com/curtis-ai-tech/curtis-compliance.git
 cd compliance
 npm install
 npm test         # 43 unit tests, ~5s
@@ -391,7 +391,7 @@ Areas on the roadmap (informational, not a request for PRs):
   `tests/compliance.test.ts` for the locked regression test)
 
 Custom frameworks, PDF export, and the hosted App are tracked at
-[JordanNewell/curtis-compliance-pro](https://github.com/JordanNewell/curtis-compliance-pro)
+[curtis-ai-tech/curtis-compliance-pro](https://github.com/curtis-ai-tech/curtis-compliance-pro)
 — not the core, and not shipping yet.
 
 ## Support This Project
